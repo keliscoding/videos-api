@@ -1,0 +1,31 @@
+version: '3.7'
+services: 
+    videoflix_database:
+        image: postgres
+        container_name: videoflix_database
+        restart: always
+        ports: 
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=videoflix
+            - POSTGRES_DB=videoflix_database
+        volumes:
+            - pgdata:/data/postgres
+        network_mode: bridge
+    app:
+        build: .
+        container_name: videoflix
+        restart: always
+        ports: 
+            - 3000:3000
+        volumes:
+            - .:/usr/app
+            - /usr/src/app/node_modules/
+        links:
+            - videoflix_database
+        network_mode: bridge
+
+volumes:
+    pgdata: 
+        driver: local
