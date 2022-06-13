@@ -1,3 +1,5 @@
+import { UniqueFieldError } from '../../../errors/UniqueFieldError';
+import { MissingFieldError } from '../../../errors/MissingFieldError';
 import { Video } from '../../entities/Video';
 import { IVideosRepository } from '../../repositories/IVideosRepository';
 
@@ -11,14 +13,14 @@ class CreateVideoUseCase {
   constructor(private videosRepository: IVideosRepository) {}
 
   async execute({ title, description, url }: IRequest): Promise<Video> {
-    if (!title || !description || !url) {
-      throw new Error('all fields must be provided.');
-    }
+    if (!title) throw new MissingFieldError('title');
+    if (!description) throw new MissingFieldError('description');
+    if (!url) throw new MissingFieldError('url');
 
     const checksIfUrlIsUnique = await this.videosRepository.findVideoByUrl(url);
 
     if (checksIfUrlIsUnique) {
-      throw new Error('url must be unique.');
+      throw new UniqueFieldError('url');
     }
 
     const video = await this.videosRepository.create({
