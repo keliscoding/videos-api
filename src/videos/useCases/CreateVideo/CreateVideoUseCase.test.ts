@@ -1,5 +1,4 @@
-import { UniqueFieldError } from '../../../errors/UniqueFieldError';
-import { MissingFieldError } from '../../../errors/MissingFieldError';
+import { AppError } from '../../../errors/UniqueFieldError';
 import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
 import { CreateVideoUseCase } from './CreateVideoUseCase';
 
@@ -29,7 +28,7 @@ describe('Create Video', () => {
         description: 'This is a description',
         url: 'https://urltest.com',
       });
-    }).rejects.toBeInstanceOf(MissingFieldError);
+    }).rejects.toBeInstanceOf(AppError);
 
     expect(async () => {
       await createVideoUseCase.execute({
@@ -37,7 +36,7 @@ describe('Create Video', () => {
         description: undefined,
         url: 'https://urltest.com',
       });
-    }).rejects.toBeInstanceOf(MissingFieldError);
+    }).rejects.toBeInstanceOf(AppError);
 
     expect(async () => {
       await createVideoUseCase.execute({
@@ -45,7 +44,7 @@ describe('Create Video', () => {
         description: 'This is a description',
         url: undefined,
       });
-    }).rejects.toBeInstanceOf(MissingFieldError);
+    }).rejects.toBeInstanceOf(AppError);
   });
 
   it('should not be able to create a new video with an url already picked', async () => {
@@ -61,6 +60,6 @@ describe('Create Video', () => {
         description: 'This is a description',
         url: 'https://urltest.com',
       });
-    }).rejects.toBeInstanceOf(UniqueFieldError);
+    }).rejects.toBeInstanceOf(AppError);
   });
 });

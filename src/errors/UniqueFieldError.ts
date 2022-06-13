@@ -1,8 +1,12 @@
-class UniqueFieldError extends Error {
-  constructor(fieldName: string) {
-    super(`Field ${fieldName} must be unique`);
-    this.name = 'UniqueFieldError';
+class AppError extends Error {
+  public readonly message: string;
+  public readonly statusCode: number;
+
+  constructor(message: string, statusCode = 400) {
+    super();
+    this.message = message;
+    this.statusCode = statusCode;
   }
 }
 
-export { UniqueFieldError };
+export { AppError };
