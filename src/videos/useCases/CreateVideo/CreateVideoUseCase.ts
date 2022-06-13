@@ -15,6 +15,12 @@ class CreateVideoUseCase {
       throw new Error('all fields must be provided.');
     }
 
+    const checksIfUrlIsUnique = await this.videosRepository.findVideoByUrl(url);
+
+    if (checksIfUrlIsUnique) {
+      throw new Error('url must be unique.');
+    }
+
     const video = await this.videosRepository.create({
       title,
       description,
