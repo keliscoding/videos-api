@@ -10,6 +10,11 @@ class CreateVideoUseCase {
   constructor(private videosRepository: IVideosRepository) {}
 
   async execute({ title, description, url }: IRequest) {
+    if (!title || !description || !url) {
+      console.log('oi');
+      throw new Error('all fields must be provided.');
+    }
+
     const video = await this.videosRepository.create({
       title,
       description,
