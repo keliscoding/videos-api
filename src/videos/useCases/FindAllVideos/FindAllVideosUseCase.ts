@@ -1,7 +1,7 @@
 import { Video } from '../../entities/Video';
 import { IVideosRepository } from '../../repositories/IVideosRepository';
 
-class SearchVideosUseCase {
+class FindAllVideosUseCase {
   constructor(private videosRepository: IVideosRepository) {}
 
   async execute(): Promise<Video[]> {
@@ -11,4 +11,4 @@ class SearchVideosUseCase {
   }
 }
 
-export { SearchVideosUseCase };
+export { FindAllVideosUseCase };

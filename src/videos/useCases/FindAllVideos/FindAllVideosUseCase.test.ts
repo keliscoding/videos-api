@@ -1,13 +1,13 @@
 import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
-import { SearchVideosUseCase } from './SearchVideosUseCase';
+import { FindAllVideosUseCase } from './FindAllVideosUseCase';
 
 let videosRepositoryInMemory;
-let searchVideosUseCase;
+let findAllVideosUseCase;
 
-describe('Search Videos', () => {
+describe('Find All Videos', () => {
   beforeEach(() => {
     videosRepositoryInMemory = new VideosRepositoryInMemory();
-    searchVideosUseCase = new SearchVideosUseCase(videosRepositoryInMemory);
+    findAllVideosUseCase = new FindAllVideosUseCase(videosRepositoryInMemory);
   });
 
   it('Should be able to display all created videos', async () => {
@@ -23,7 +23,7 @@ describe('Search Videos', () => {
       url: 'http://www.video.com/222',
     });
 
-    const allVideos = await searchVideosUseCase.execute();
+    const allVideos = await findAllVideosUseCase.execute();
 
     expect(allVideos).toHaveLength(2);
   });
