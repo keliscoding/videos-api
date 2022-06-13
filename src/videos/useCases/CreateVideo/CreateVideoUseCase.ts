@@ -11,7 +11,6 @@ class CreateVideoUseCase {
 
   async execute({ title, description, url }: IRequest) {
     if (!title || !description || !url) {
-      console.log('oi');
       throw new Error('all fields must be provided.');
     }
 
