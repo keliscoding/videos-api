@@ -1,3 +1,4 @@
+import { Video } from '../../entities/Video';
 import { IVideosRepository } from '../../repositories/IVideosRepository';
 
 interface IRequest {
@@ -9,7 +10,7 @@ interface IRequest {
 class CreateVideoUseCase {
   constructor(private videosRepository: IVideosRepository) {}
 
-  async execute({ title, description, url }: IRequest) {
+  async execute({ title, description, url }: IRequest): Promise<Video> {
     if (!title || !description || !url) {
       throw new Error('all fields must be provided.');
     }
