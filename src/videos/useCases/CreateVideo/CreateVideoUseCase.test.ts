@@ -45,4 +45,20 @@ describe('Create Video', () => {
       });
     }).rejects.toBeInstanceOf(Error);
   });
+
+  it('should not be able to create a new video with an url already picked', async () => {
+    expect(async () => {
+      await createVideoUseCase.execute({
+        title: 'Video Test',
+        description: 'This is a description',
+        url: 'https://urltest.com',
+      });
+
+      await createVideoUseCase.execute({
+        title: 'Video Test',
+        description: 'This is a description',
+        url: 'https://urltest.com',
+      });
+    }).rejects.toBeInstanceOf(Error);
+  });
 });
