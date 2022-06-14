@@ -1,4 +1,7 @@
+import 'reflect-metadata';
 import express from 'express';
+
+import './videos/infra/typeorm/index';
 
 import handleError from './middleware/handleError';
 

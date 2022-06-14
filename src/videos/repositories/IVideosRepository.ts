@@ -1,4 +1,4 @@
-import { Video } from '../entities/Video';
+import { Video } from '../infra/typeorm/entities/Video';
 import { CreateVideoDTO } from '../dtos/CreateVideoDTO';
 
 interface IVideosRepository {

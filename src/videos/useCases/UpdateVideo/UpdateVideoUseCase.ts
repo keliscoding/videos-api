@@ -1,6 +1,6 @@
-import { IVideosRepository } from '../../repositories/IVideosRepository';
-import { Video } from '../../entities/Video';
-import { AppError } from '../../../errors/AppError';
+import { AppError } from '@errors/AppError';
+import { Video } from '@src/videos/infra/typeorm/entities/Video';
+import { IVideosRepository } from '@src/videos/repositories/IVideosRepository';
 
 interface IRequest {
   id: string;

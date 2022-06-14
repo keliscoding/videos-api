@@ -1,5 +1,5 @@
 import { AppError } from '@errors/AppError';
-import { Video } from '@src/videos/entities/Video';
+import { Video } from '@src/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@src/videos/repositories/IVideosRepository';
 
 class FindVideoByIdUseCase {

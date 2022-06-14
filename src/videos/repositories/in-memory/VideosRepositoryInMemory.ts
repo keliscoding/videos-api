@@ -1,5 +1,5 @@
 import { CreateVideoDTO } from '@src/videos/dtos/CreateVideoDTO';
-import { Video } from '@src/videos/entities/Video';
+import { Video } from '@src/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '../IVideosRepository';
 
 class VideosRepositoryInMemory implements IVideosRepository {
