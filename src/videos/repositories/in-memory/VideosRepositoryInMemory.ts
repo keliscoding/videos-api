@@ -28,6 +28,12 @@ class VideosRepositoryInMemory implements IVideosRepository {
     const video = this.videos.find(video => video.id === id);
     return video;
   }
+
+  async updateVideo({ id, title, description }: Video): Promise<void> {
+    const index = this.videos.findIndex(video => video.id === id);
+    this.videos[index].title = title;
+    this.videos[index].description = description;
+  }
 }
 
 export { VideosRepositoryInMemory };

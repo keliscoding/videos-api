@@ -6,6 +6,7 @@ interface IVideosRepository {
   findVideoByUrl(url: string): Promise<Video>;
   findAll(): Promise<Video[]>;
   findVideoById(id: string): Promise<Video>;
+  updateVideo(video: Video): Promise<void>;
 }
 
 export { IVideosRepository };
