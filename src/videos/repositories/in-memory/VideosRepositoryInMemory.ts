@@ -23,6 +23,11 @@ class VideosRepositoryInMemory implements IVideosRepository {
   async findAll(): Promise<Video[]> {
     return this.videos;
   }
+
+  async findVideoById(id: string): Promise<Video> {
+    const video = this.videos.find(video => video.id === id);
+    return video;
+  }
 }
 
 export { VideosRepositoryInMemory };
