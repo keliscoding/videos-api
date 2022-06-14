@@ -17,10 +17,8 @@ describe('Find video by id', () => {
       url: 'https://urltest.com',
     });
 
-    console.log(newVideo.id);
-
     const videoFound = await findVideoByIdUseCase.execute(newVideo.id);
 
-    // expect(videoFound).toMatchObject(newVideo);
+    expect(videoFound).toMatchObject(newVideo);
   });
 });
