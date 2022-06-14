@@ -22,6 +22,6 @@ describe('Delete Video', () => {
 
     const searchVideo = await videosRepositoryInMemory.findVideoById(video.id);
 
-    expect(searchVideo).toThrow(AppError);
+    expect(searchVideo).toBeUndefined();
   });
 });
