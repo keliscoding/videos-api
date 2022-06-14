@@ -1,5 +1,6 @@
 import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
 import { UpdateVideoUseCase } from './UpdateVideoUseCase';
+import { AppError } from '../../../errors/AppError';
 
 let videosRepositoryInMemory;
 let updateVideoUseCase;
@@ -28,5 +29,11 @@ describe('update video', () => {
     );
 
     expect(updatedVideo).toMatchObject(findVideoById);
+  });
+
+  it('should throw an error if id is non-existent', async () => {
+    expect(async () => {
+      await updateVideoUseCase.execute('123123123');
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
