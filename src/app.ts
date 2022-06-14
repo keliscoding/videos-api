@@ -4,8 +4,11 @@ import express from 'express';
 import './videos/infra/typeorm/index';
 
 import handleError from './middleware/handleError';
+import { router } from './routes';
 
 const app = express();
+
+app.use('/api', router);
 
 app.use(handleError);
 
