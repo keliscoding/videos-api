@@ -6,7 +6,7 @@
   "author": "Kelly Castelo <kellyplcastelo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --poll --inspect --transpile-only --respawn ./src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --poll --inspect --transpile-only --respawn ./src/server.ts",
     "test": "jest --runInBand"
   },
   "dependencies": {
