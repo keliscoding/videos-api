@@ -1,17 +1,35 @@
+import {
+  PrimaryColumn,
+  Column,
+  Entity,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
+@Entity('videos')
 class Video {
+  @PrimaryColumn()
   id: string;
+
+  @Column()
   title: string;
+
+  @Column()
   description: string;
+
+  @Column()
   url: string;
+
+  @CreateDateColumn()
   created_at: Date;
+
+  @UpdateDateColumn()
   updated_at: Date;
 
   constructor() {
     if (!this.id) {
       this.id = uuid();
-      this.created_at = new Date();
     }
   }
 }
