@@ -6,9 +6,11 @@ export const AppDataSource = new DataSource({
   port: 5432,
   username: 'docker',
   password: 'videoflix',
-  database: 'videoflix_database',
+  database:
+    process.env.NODE_ENV == 'test' ? 'videoflix_test' : 'videoflix_database',
   synchronize: true,
-  logging: true,
+  dropSchema: process.env.NODE_ENV == 'test',
+  logging: false,
   migrations: [__dirname + '/videos/infra/typeorm/migrations/*.ts'],
   entities: [__dirname + '/videos/infra/typeorm/entities/*.ts'],
 });
