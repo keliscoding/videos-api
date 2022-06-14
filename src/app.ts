@@ -1,8 +1,13 @@
-import express from "express";
+import express from 'express';
+
+import handleError from './middleware/handleError';
+
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.use(handleError);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
 export { app };
