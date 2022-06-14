@@ -34,6 +34,11 @@ class VideosRepositoryInMemory implements IVideosRepository {
     this.videos[index].title = title;
     this.videos[index].description = description;
   }
+
+  async deleteVideo(id: string): Promise<void> {
+    const videos = this.videos.filter(video => video.id !== id);
+    this.videos = videos;
+  }
 }
 
 export { VideosRepositoryInMemory };
