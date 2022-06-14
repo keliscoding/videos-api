@@ -9,6 +9,6 @@ export const AppDataSource = new DataSource({
   database: 'videoflix_database',
   synchronize: true,
   logging: true,
-  migrations: [__dirname + '/infra/typeorm/migrations/*.ts'],
-  entities: [__dirname + 'videos/infra/typeorm/entities/*.ts'],
+  migrations: [__dirname + '/videos/infra/typeorm/migrations/*.ts'],
+  entities: [__dirname + '/videos/infra/typeorm/entities/*.ts'],
 });
