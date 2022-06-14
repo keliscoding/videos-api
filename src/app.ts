@@ -2,14 +2,16 @@ import 'reflect-metadata';
 import express from 'express';
 import 'express-async-errors';
 
-import './videos/infra/typeorm/index';
-
 import handleError from './middleware/handleError';
+import '@shared/container';
+
 import { router } from './routes';
 
 const app = express();
 
-app.use('/api', router);
+app.use(express.json());
+
+app.use(router);
 
 app.use(handleError);
 
