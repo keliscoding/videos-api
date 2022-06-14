@@ -1,4 +1,4 @@
-import { AppError } from '../../../errors/UniqueFieldError';
+import { AppError } from '../../../errors/AppError';
 import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
 import { CreateVideoUseCase } from './CreateVideoUseCase';
 

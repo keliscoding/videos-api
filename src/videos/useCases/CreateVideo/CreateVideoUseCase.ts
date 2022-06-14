@@ -1,4 +1,4 @@
-import { AppError } from '../../../errors/UniqueFieldError';
+import { AppError } from '../../../errors/AppError';
 import { Video } from '../../entities/Video';
 import { IVideosRepository } from '../../repositories/IVideosRepository';
 
