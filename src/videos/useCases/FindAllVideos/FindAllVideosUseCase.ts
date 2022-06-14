@@ -1,5 +1,5 @@
-import { Video } from '../../entities/Video';
-import { IVideosRepository } from '../../repositories/IVideosRepository';
+import { Video } from '@src/videos/entities/Video';
+import { IVideosRepository } from '@src/videos/repositories/IVideosRepository';
 
 class FindAllVideosUseCase {
   constructor(private videosRepository: IVideosRepository) {}

@@ -1,4 +1,3 @@
-import { AppError } from '@errors/AppError';
 import { VideosRepositoryInMemory } from '@src/videos/repositories/in-memory/VideosRepositoryInMemory';
 import { DeleteVideoUseCase } from './DeleteVideoUseCase';
 

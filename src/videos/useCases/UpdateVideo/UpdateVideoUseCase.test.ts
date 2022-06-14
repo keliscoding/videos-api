@@ -1,6 +1,6 @@
-import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
+import { AppError } from '@errors/AppError';
+import { VideosRepositoryInMemory } from '@src/videos/repositories/in-memory/VideosRepositoryInMemory';
 import { UpdateVideoUseCase } from './UpdateVideoUseCase';
-import { AppError } from '../../../errors/AppError';
 
 let videosRepositoryInMemory;
 let updateVideoUseCase;

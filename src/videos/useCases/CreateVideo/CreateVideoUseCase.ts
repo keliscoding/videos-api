@@ -1,6 +1,6 @@
-import { AppError } from '../../../errors/AppError';
-import { Video } from '../../entities/Video';
-import { IVideosRepository } from '../../repositories/IVideosRepository';
+import { AppError } from '@errors/AppError';
+import { Video } from '@src/videos/entities/Video';
+import { IVideosRepository } from '@src/videos/repositories/IVideosRepository';
 
 interface IRequest {
   title: string;

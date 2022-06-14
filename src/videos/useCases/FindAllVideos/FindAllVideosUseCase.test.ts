@@ -1,4 +1,4 @@
-import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
+import { VideosRepositoryInMemory } from '@src/videos/repositories/in-memory/VideosRepositoryInMemory';
 import { FindAllVideosUseCase } from './FindAllVideosUseCase';
 
 let videosRepositoryInMemory;
