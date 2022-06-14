@@ -1,4 +1,6 @@
-import { app } from "./app";
+import { app } from './app';
+import './videos/infra/typeorm/index';
+
 const port = 3000;
 
 app.listen(port, () => {
