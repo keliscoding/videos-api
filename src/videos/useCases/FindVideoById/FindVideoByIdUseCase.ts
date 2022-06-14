@@ -1,9 +1,15 @@
+import { injectable, inject } from 'tsyringe';
+
 import { AppError } from '@errors/AppError';
 import { Video } from '@src/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@src/videos/repositories/IVideosRepository';
 
+@injectable()
 class FindVideoByIdUseCase {
-  constructor(private videosRepository: IVideosRepository) {}
+  constructor(
+    @inject('VideosRepository')
+    private videosRepository: IVideosRepository,
+  ) {}
 
   async execute(id: string): Promise<Video> {
     const video = await this.videosRepository.findVideoById(id);

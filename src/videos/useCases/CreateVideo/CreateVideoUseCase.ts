@@ -1,3 +1,5 @@
+import { injectable, inject } from 'tsyringe';
+
 import { AppError } from '@errors/AppError';
 import { Video } from '@src/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@src/videos/repositories/IVideosRepository';
@@ -8,8 +10,12 @@ interface IRequest {
   url: string;
 }
 
+@injectable()
 class CreateVideoUseCase {
-  constructor(private videosRepository: IVideosRepository) {}
+  constructor(
+    @inject('VideosRepository')
+    private videosRepository: IVideosRepository,
+  ) {}
 
   async execute({ title, description, url }: IRequest): Promise<Video> {
     if (!title) throw new AppError('missing title field');
