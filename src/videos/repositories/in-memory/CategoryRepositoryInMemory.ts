@@ -23,7 +23,7 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
     return category;
   }
 
-  async update({ id, title }: Category): Promise<void> {
+  async updateCategory({ id, title }: Category): Promise<void> {
     const index = this.categories.findIndex(video => video.id === id);
     this.categories[index].title = title;
   }
@@ -33,7 +33,7 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
     return category;
   }
 
-  async delete(id: string): Promise<void> {
+  async deleteCategory(id: string): Promise<void> {
     const categories = this.categories.filter(category => category.id !== id);
     this.categories = categories;
   }

@@ -4,7 +4,7 @@ class DeleteCategoryUseCase {
   constructor(private categoryRepository: ICategoryRepository) {}
 
   async execute(id: string): Promise<void> {
-    await this.categoryRepository.delete(id);
+    await this.categoryRepository.deleteCategory(id);
   }
 }
 

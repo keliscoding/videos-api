@@ -9,7 +9,7 @@ class UpdateCategoryUseCase {
 
     category.title = title ? title : category.title;
 
-    await this.categoryRepository.update(category);
+    await this.categoryRepository.updateCategory(category);
 
     return category;
   }
