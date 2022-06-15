@@ -1,3 +1,4 @@
+import { AppError } from '@errors/AppError';
 import { CategoryRepositoryInMemory } from '@src/videos/repositories/in-memory/CategoryRepositoryInMemory';
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
@@ -16,5 +17,13 @@ describe('create category', () => {
     const category = await createCategoryUseCase.execute('Test Title');
 
     expect(category).toHaveProperty('id');
+  });
+
+  it('should not be able to create a category with a title already taken', async () => {
+    await createCategoryUseCase.execute('Test Title');
+
+    expect(async () => {
+      await createCategoryUseCase.execute('Test Title');
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
