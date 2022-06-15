@@ -14,7 +14,7 @@ describe('Create Video Controller', () => {
   });
 
   it('Should be able to create a new video', async () => {
-    const response = await request(app).post('/videos').send({
+    const response = await request(app).post('/api/v1/videos').send({
       title: 'Video Test Title',
       description: 'Description of a video',
       url: 'https://url.com',

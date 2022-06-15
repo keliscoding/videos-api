@@ -13,19 +13,19 @@ describe('Find All Videos Controller', () => {
   });
 
   it('Should be able to list all existent videos', async () => {
-    await request(app).post('/videos').send({
+    await request(app).post('/api/v1/videos').send({
       title: 'test_1',
       description: 'description_test',
       url: 'http://firstUrltest.com',
     });
 
-    await request(app).post('/videos').send({
+    await request(app).post('/api/v1/videos').send({
       title: 'test_2',
       description: 'description_test',
       url: 'http://secondUrltest.com',
     });
 
-    const response = await request(app).get('/videos');
+    const response = await request(app).get('/api/v1/videos');
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveLength(2);
