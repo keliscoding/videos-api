@@ -13,6 +13,10 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
 
     return newCategory;
   }
+
+  async findAll(): Promise<Category[]> {
+    return this.categories;
+  }
 }
 
 export { CategoryRepositoryInMemory };
