@@ -32,6 +32,11 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
     const category = this.categories.find(category => category.id === id);
     return category;
   }
+
+  async delete(id: string): Promise<void> {
+    const categories = this.categories.filter(category => category.id !== id);
+    this.categories = categories;
+  }
 }
 
 export { CategoryRepositoryInMemory };

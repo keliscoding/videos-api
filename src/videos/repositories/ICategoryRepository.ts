@@ -6,6 +6,7 @@ interface ICategoryRepository {
   findByTitle(title: string): Promise<Category>;
   findById(id: string): Promise<Category>;
   update(category: Category): Promise<void>;
+  delete(id: string): Promise<void>;
 }
 
 export { ICategoryRepository };
