@@ -4,6 +4,6 @@ import { videosRouter } from './videos.routes';
 
 const router = Router();
 
-router.use('/api/videos', videosRouter);
+router.use('/videos', videosRouter);
 
 export { router };
