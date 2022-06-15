@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import { CreateVideoController } from '@src/videos/useCases/CreateVideo/CreateVideoController';
-import { FindAllVideosController } from '@src/videos/useCases/FindAllVideos/FindAllVideosController';
-import { FindVideoByIdController } from '@src/videos/useCases/FindVideoById/FindVideoByIdController';
-import { UpdateVideoController } from '@src/videos/useCases/UpdateVideo/UpdateVideoController';
-import { DeleteVideoController } from '@src/videos/useCases/DeleteVideo/DeleteVideoController';
+import { CreateVideoController } from '@modules/videos/useCases/CreateVideo/CreateVideoController';
+import { FindAllVideosController } from '@modules/videos/useCases/FindAllVideos/FindAllVideosController';
+import { FindVideoByIdController } from '@modules/videos/useCases/FindVideoById/FindVideoByIdController';
+import { UpdateVideoController } from '@modules/videos/useCases/UpdateVideo/UpdateVideoController';
+import { DeleteVideoController } from '@modules/videos/useCases/DeleteVideo/DeleteVideoController';
 
 const videosRouter = Router();
 

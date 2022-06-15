@@ -11,6 +11,6 @@ export const AppDataSource = new DataSource({
   synchronize: process.env.NODE_ENV === 'test',
   dropSchema: process.env.NODE_ENV === 'test',
   logging: false,
-  migrations: [__dirname + '/videos/infra/typeorm/migrations/*.ts'],
-  entities: [__dirname + '/videos/infra/typeorm/entities/*.ts'],
+  migrations: [__dirname + '/infra/typeorm/migrations/*.ts'],
+  entities: [__dirname + '/modules/videos/infra/typeorm/entities/*.ts'],
 });
