@@ -26,4 +26,10 @@ describe('create category', () => {
       await createCategoryUseCase.execute('Test Title');
     }).rejects.toBeInstanceOf(AppError);
   });
+
+  it('should not be able to create a category without a title', async () => {
+    expect(async () => {
+      await createCategoryUseCase.execute('');
+    }).rejects.toBeInstanceOf(AppError);
+  });
 });

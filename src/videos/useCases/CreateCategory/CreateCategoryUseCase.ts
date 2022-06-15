@@ -6,6 +6,10 @@ class CreateCategoryUseCase {
   constructor(private categoryRepository: ICategoryRepository) {}
 
   async execute(title: string): Promise<Category> {
+    if (!title) {
+      throw new AppError('Title must be provided');
+    }
+
     const formatedTitle = title.toLowerCase();
 
     const categoryAlreadyExist = await this.categoryRepository.findByTitle(
