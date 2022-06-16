@@ -11,9 +11,9 @@ describe('Add categories to video controller', () => {
     await AppDataSource.destroy();
   });
 
-  it.only('should be able to add a category to a video', async () => {
+  it('should be able to add a category to a video', async () => {
     const video = await request(app).post('/api/v1/videos').send({
-      title: 'Video Test Title',
+      title: 'Add Category To Video',
       description: 'Description of a video',
       url: 'https://url.com',
     });
@@ -29,5 +29,7 @@ describe('Add categories to video controller', () => {
       });
 
     expect(response.status).toBe(200);
+
+    expect(response.body.categories).toHaveLength(1);
   });
 });

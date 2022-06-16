@@ -11,9 +11,12 @@ class AddCategoriesToVideoController {
       AddCategoriesToVideoUseCase,
     );
 
-    await addCategoriesToVideosUseCase.execute({ video_id, categories_id });
+    const video = await addCategoriesToVideosUseCase.execute({
+      video_id,
+      categories_id,
+    });
 
-    return response.send();
+    return response.json(video);
   }
 }
 

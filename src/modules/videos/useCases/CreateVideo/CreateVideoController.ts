@@ -4,7 +4,7 @@ import { CreateVideoUseCase } from './CreateVideoUseCase';
 
 class CreateVideoController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { title, description, url } = request.body;
+    const { title, description, url, categories } = request.body;
 
     const createVideoUseCase = container.resolve(CreateVideoUseCase);
 
@@ -12,6 +12,7 @@ class CreateVideoController {
       title,
       description,
       url,
+      categories,
     });
 
     return response.status(201).json(newVideo);
