@@ -13,7 +13,9 @@ class Category {
   created_at: Date;
 
   constructor() {
-    this.id = uuid();
+    if (!this.id) {
+      this.id = uuid();
+    }
   }
 }
 
