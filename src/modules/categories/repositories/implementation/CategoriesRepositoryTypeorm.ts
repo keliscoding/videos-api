@@ -43,6 +43,10 @@ class CategoriesRepositoryTypeorm implements ICategoryRepository {
   async deleteCategory(id: string): Promise<void> {
     await this.repository.delete(id);
   }
+
+  async findByIds(ids: string[]): Promise<Category[]> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export { CategoriesRepositoryTypeorm };

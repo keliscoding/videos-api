@@ -37,6 +37,13 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
     const categories = this.categories.filter(category => category.id !== id);
     this.categories = categories;
   }
+
+  async findByIds(ids: string[]): Promise<Category[]> {
+    const categories = this.categories.filter(categories =>
+      ids.includes(categories.id),
+    );
+    return categories;
+  }
 }
 
 export { CategoryRepositoryInMemory };

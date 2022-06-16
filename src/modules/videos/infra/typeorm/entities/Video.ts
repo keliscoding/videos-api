@@ -1,9 +1,12 @@
+import { Category } from '@modules/categories/infra/typeorm/entities/Category';
 import {
   PrimaryColumn,
   Column,
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
@@ -26,6 +29,14 @@ class Video {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToMany(() => Category)
+  @JoinTable({
+    name: 'belongs',
+    joinColumns: [{ name: 'video_id' }],
+    inverseJoinColumns: [{ name: 'category_id' }],
+  })
+  categories: Category[];
 
   constructor() {
     if (!this.id) {
