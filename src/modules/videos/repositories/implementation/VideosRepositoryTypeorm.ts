@@ -53,6 +53,10 @@ class VideosRepositoryTypeorm implements IVideosRepository {
   async deleteVideo(id: string): Promise<void> {
     await this.repository.delete(id);
   }
+
+  async findVideosByCategoryId(id: string): Promise<Video[]> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export { VideosRepositoryTypeorm };

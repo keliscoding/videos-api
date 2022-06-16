@@ -13,6 +13,7 @@ interface IVideosRepository {
   findAll(): Promise<Video[]>;
   findVideoById(id: string): Promise<Video>;
   deleteVideo(id: string): Promise<void>;
+  findVideosByCategoryId(id: string): Promise<Video[]>;
 }
 
 export { IVideosRepository };

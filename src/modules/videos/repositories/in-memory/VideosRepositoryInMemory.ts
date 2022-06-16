@@ -39,6 +39,14 @@ class VideosRepositoryInMemory implements IVideosRepository {
     const videos = this.videos.filter(video => video.id !== id);
     this.videos = videos;
   }
+
+  async findVideosByCategoryId(id: string): Promise<Video[]> {
+    const videos = await this.videos.filter(video =>
+      video.categories.filter(category => category.id === id),
+    );
+
+    return videos;
+  }
 }
 
 export { VideosRepositoryInMemory };
