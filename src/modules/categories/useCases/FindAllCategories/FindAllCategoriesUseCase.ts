@@ -1,5 +1,5 @@
 import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { Category } from '@modules/videos/infra/typeorm/entities/Category';
+import { Category } from '@modules/categories/infra/typeorm/entities/Category';
 
 class FindAllCategoriesUseCase {
   constructor(private categoryRepository: ICategoryRepository) {}

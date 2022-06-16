@@ -1,4 +1,4 @@
-import { Category } from '../../videos/infra/typeorm/entities/Category';
+import { Category } from '../infra/typeorm/entities/Category';
 
 interface ICategoryRepository {
   create(title: string): Promise<Category>;
