@@ -1,8 +1,9 @@
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
+import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { FindAllVideosUseCase } from './FindAllVideosUseCase';
 
-let videosRepositoryInMemory;
-let findAllVideosUseCase;
+let videosRepositoryInMemory: IVideosRepository;
+let findAllVideosUseCase: FindAllVideosUseCase;
 
 describe('Find All Videos', () => {
   beforeEach(() => {

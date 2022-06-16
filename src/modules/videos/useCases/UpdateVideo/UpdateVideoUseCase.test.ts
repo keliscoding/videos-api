@@ -1,9 +1,10 @@
 import { AppError } from '@errors/AppError';
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
+import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { UpdateVideoUseCase } from './UpdateVideoUseCase';
 
-let videosRepositoryInMemory;
-let updateVideoUseCase;
+let videosRepositoryInMemory: IVideosRepository;
+let updateVideoUseCase: UpdateVideoUseCase;
 
 describe('update video', () => {
   beforeEach(() => {
@@ -33,7 +34,7 @@ describe('update video', () => {
 
   it('should throw an error if id is non-existent', async () => {
     expect(async () => {
-      await updateVideoUseCase.execute('123123123');
+      await updateVideoUseCase.execute({ id: '123123123' });
     }).rejects.toBeInstanceOf(AppError);
   });
 });

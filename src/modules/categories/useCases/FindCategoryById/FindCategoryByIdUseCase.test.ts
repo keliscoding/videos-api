@@ -1,8 +1,9 @@
+import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
 import { FindCategoryByIdUseCase } from './FindCategoryByIdUseCase';
 
-let categoryRepositoryInMemory;
-let findCategoryByIdUseCase;
+let categoryRepositoryInMemory: ICategoryRepository;
+let findCategoryByIdUseCase: FindCategoryByIdUseCase;
 
 describe('Find Category By Id', () => {
   beforeEach(() => {

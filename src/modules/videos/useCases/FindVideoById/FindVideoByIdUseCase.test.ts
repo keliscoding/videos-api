@@ -1,9 +1,10 @@
 import { AppError } from '@errors/AppError';
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
+import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { FindVideoByIdUseCase } from './FindVideoByIdUseCase';
 
-let videoRepositoryInMemory;
-let findVideoByIdUseCase;
+let videoRepositoryInMemory: IVideosRepository;
+let findVideoByIdUseCase: FindVideoByIdUseCase;
 
 describe('Find video by id', () => {
   beforeEach(() => {

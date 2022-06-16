@@ -1,9 +1,10 @@
 import { AppError } from '@errors/AppError';
+import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
-let categoryRepositoryInMemory;
-let createCategoryUseCase;
+let categoryRepositoryInMemory: ICategoryRepository;
+let createCategoryUseCase: CreateCategoryUseCase;
 
 describe('create category', () => {
   beforeEach(() => {

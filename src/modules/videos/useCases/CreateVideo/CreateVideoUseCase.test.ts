@@ -1,9 +1,10 @@
 import { AppError } from '@errors/AppError';
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
+import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { CreateVideoUseCase } from './CreateVideoUseCase';
 
-let videosRepositoryInMemory;
-let createVideoUseCase;
+let videosRepositoryInMemory: IVideosRepository;
+let createVideoUseCase: CreateVideoUseCase;
 
 describe('Create Video', () => {
   beforeEach(() => {

@@ -1,9 +1,10 @@
 import { AppError } from '@errors/AppError';
+import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
 import { UpdateCategoryUseCase } from './UpdateCategoryUseCase';
 
-let categoryRepositoryInMemory;
-let updateCategoryUseCase;
+let categoryRepositoryInMemory: ICategoryRepository;
+let updateCategoryUseCase: UpdateCategoryUseCase;
 
 describe('Update category', () => {
   beforeEach(() => {

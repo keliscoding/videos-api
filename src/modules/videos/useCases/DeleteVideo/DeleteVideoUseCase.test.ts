@@ -1,8 +1,9 @@
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
+import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { DeleteVideoUseCase } from './DeleteVideoUseCase';
 
-let videosRepositoryInMemory;
-let deleteVideoUseCase;
+let videosRepositoryInMemory: IVideosRepository;
+let deleteVideoUseCase: DeleteVideoUseCase;
 
 describe('Delete Video', () => {
   beforeEach(() => {
