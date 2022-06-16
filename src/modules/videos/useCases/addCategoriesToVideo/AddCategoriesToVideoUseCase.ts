@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { AppError } from '@errors/AppError';
 import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
@@ -7,9 +9,12 @@ interface IRequest {
   categories_id: string[];
 }
 
+@injectable()
 class AddCategoriesToVideoUseCase {
   constructor(
+    @inject('VideosRepository')
     private videosRepository: IVideosRepository,
+    @inject('CategoriesRepository')
     private categoriesRepository: ICategoryRepository,
   ) {}
 

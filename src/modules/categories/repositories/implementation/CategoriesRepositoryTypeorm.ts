@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
 import { ICategoryRepository } from '../ICategoryRepository';
@@ -45,7 +45,8 @@ class CategoriesRepositoryTypeorm implements ICategoryRepository {
   }
 
   async findByIds(ids: string[]): Promise<Category[]> {
-    throw new Error('Method not implemented.');
+    const categories = await this.repository.findBy({ id: In(ids) });
+    return categories;
   }
 }
 
