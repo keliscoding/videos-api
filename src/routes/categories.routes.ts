@@ -4,6 +4,7 @@ import { CreateCategoryController } from '@modules/categories/useCases/CreateCat
 import { FindAllCategoriesController } from '@modules/categories/useCases/FindAllCategories/FindAllCategoriesController';
 import { FindCategoryByIdController } from '@modules/categories/useCases/FindCategoryById/FindCategoryByIdController';
 import { UpdateCategoryController } from '@modules/categories/useCases/UpdateCategory/UpdateCategoryController';
+import { DeleteCategoryController } from '@modules/categories/useCases/DeleteCategory/DeleteCategoryController';
 
 const categoriesRouter = Router();
 
@@ -11,6 +12,7 @@ const createCategoryController = new CreateCategoryController();
 const findAllCategoriesController = new FindAllCategoriesController();
 const findCategoryByIdController = new FindCategoryByIdController();
 const updateCategoryController = new UpdateCategoryController();
+const deleteCategoryController = new DeleteCategoryController();
 
 categoriesRouter
   .post('/', createCategoryController.handle)
@@ -18,6 +20,7 @@ categoriesRouter
 
 categoriesRouter
   .get('/:id', findCategoryByIdController.handle)
-  .patch('/:id', updateCategoryController.handle);
+  .patch('/:id', updateCategoryController.handle)
+  .delete('/:id', deleteCategoryController.handle);
 
 export { categoriesRouter };
