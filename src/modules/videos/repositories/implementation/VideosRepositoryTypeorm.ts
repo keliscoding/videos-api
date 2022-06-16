@@ -55,7 +55,15 @@ class VideosRepositoryTypeorm implements IVideosRepository {
   }
 
   async findVideosByCategoryId(id: string): Promise<Video[]> {
-    throw new Error('Method not implemented.');
+    const videos = await this.repository.find({
+      where: {
+        categories: {
+          id: id,
+        },
+      },
+      relations: { categories: true },
+    });
+    return videos;
   }
 }
 

@@ -1,11 +1,16 @@
+import { inject, injectable } from 'tsyringe';
+
 import { AppError } from '@errors/AppError';
 import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 
+@injectable()
 class FindVideosByCategoryUseCase {
   constructor(
+    @inject('VideosRepository')
     private videosRepository: IVideosRepository,
+    @inject('CategoriesRepository')
     private categoryRepository: ICategoryRepository,
   ) {}
 
