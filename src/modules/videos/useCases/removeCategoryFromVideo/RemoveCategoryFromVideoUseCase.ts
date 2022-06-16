@@ -1,15 +1,19 @@
 import { AppError } from '@errors/AppError';
 import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
+import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
   category_id: string;
   video_id: string;
 }
 
+@injectable()
 class RemoveCategoryFromVideoUseCase {
   constructor(
+    @inject('VideosRepository')
     private videosRepository: IVideosRepository,
+    @inject('CategoriesRepository')
     private categoryRepository: ICategoryRepository,
   ) {}
 
@@ -32,7 +36,7 @@ class RemoveCategoryFromVideoUseCase {
 
     video.categories = video.categories.filter(c => c.id !== category_id);
 
-    await this.videosRepository.updateVideo(video);
+    await this.videosRepository.create(video);
   }
 }
 
