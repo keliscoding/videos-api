@@ -12,8 +12,20 @@ class VideosRepositoryTypeorm implements IVideosRepository {
     this.repository = AppDataSource.getRepository(Video);
   }
 
-  async create({ title, description, url }: CreateVideoDTO): Promise<Video> {
-    const video = this.repository.create({ title, description, url });
+  async create({
+    id,
+    title,
+    description,
+    url,
+    categories,
+  }: CreateVideoDTO): Promise<Video> {
+    const video = this.repository.create({
+      id,
+      title,
+      description,
+      url,
+      categories,
+    });
 
     await this.repository.save(video);
 
@@ -31,12 +43,11 @@ class VideosRepositoryTypeorm implements IVideosRepository {
   }
 
   async findVideoById(id: string): Promise<Video> {
-    const video = await this.repository.findOneBy({ id });
+    const video = await this.repository.findOne({
+      where: { id },
+      relations: { categories: true },
+    });
     return video;
-  }
-
-  async updateVideo({ title, description, id }: Video): Promise<void> {
-    await this.repository.update(id, { title, description });
   }
 
   async deleteVideo(id: string): Promise<void> {

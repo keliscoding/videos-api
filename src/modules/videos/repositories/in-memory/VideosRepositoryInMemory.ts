@@ -5,10 +5,16 @@ import { IVideosRepository } from '../IVideosRepository';
 class VideosRepositoryInMemory implements IVideosRepository {
   videos: Video[] = [];
 
-  async create({ title, description, url }: CreateVideoDTO): Promise<Video> {
+  async create({
+    title,
+    description,
+    url,
+    id,
+    categories,
+  }: CreateVideoDTO): Promise<Video> {
     const newVideo = new Video();
 
-    Object.assign(newVideo, { title, description, url });
+    Object.assign(newVideo, { title, description, url, id, categories });
 
     this.videos.push(newVideo);
 
@@ -27,12 +33,6 @@ class VideosRepositoryInMemory implements IVideosRepository {
   async findVideoById(id: string): Promise<Video> {
     const video = this.videos.find(video => video.id === id);
     return video;
-  }
-
-  async updateVideo({ id, title, description }: Video): Promise<void> {
-    const index = this.videos.findIndex(video => video.id === id);
-    this.videos[index].title = title;
-    this.videos[index].description = description;
   }
 
   async deleteVideo(id: string): Promise<void> {
