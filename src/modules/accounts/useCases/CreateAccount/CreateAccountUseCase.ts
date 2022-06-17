@@ -1,3 +1,5 @@
+import bcryptjs from 'bcryptjs';
+
 import { AppError } from '@errors/AppError';
 import { Account } from '@modules/accounts/infra/typeorm/entities/Account';
 import { IAccountRepository } from '@modules/accounts/repositories/IAccountRepository';
@@ -23,9 +25,11 @@ class CreateAccountUseCase {
     const emailExists = await this.accountRepository.findAccountByEmail(email);
     if (emailExists) throw new AppError('email already taken');
 
+    const encryptedPassword = await bcryptjs.hash(password, 10);
+
     const account = await this.accountRepository.create({
       username,
-      password,
+      password: encryptedPassword,
       email,
     });
 

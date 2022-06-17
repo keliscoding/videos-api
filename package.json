@@ -12,6 +12,7 @@
     "seed:defaultCategory": "ts-node-dev -r tsconfig-paths/register src/infra/typeorm/seed/defaultCategory.ts"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
