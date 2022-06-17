@@ -47,6 +47,10 @@ class VideosRepositoryInMemory implements IVideosRepository {
 
     return videos;
   }
+
+  async findVideosByTitle(title: string): Promise<Video[]> {
+    return this.videos.filter(video => video.title.includes(title));
+  }
 }
 
 export { VideosRepositoryInMemory };

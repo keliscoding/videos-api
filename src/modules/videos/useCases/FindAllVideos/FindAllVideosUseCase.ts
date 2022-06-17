@@ -10,10 +10,12 @@ class FindAllVideosUseCase {
     private videosRepository: IVideosRepository,
   ) {}
 
-  async execute(): Promise<Video[]> {
-    const videos = await this.videosRepository.findAll();
+  async execute(title?: string): Promise<Video[]> {
+    if (title) {
+      return this.videosRepository.findVideosByTitle(title);
+    }
 
-    return videos;
+    return this.videosRepository.findAll();
   }
 }
 

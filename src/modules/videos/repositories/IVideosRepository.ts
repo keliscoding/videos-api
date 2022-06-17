@@ -14,6 +14,7 @@ interface IVideosRepository {
   findVideoById(id: string): Promise<Video>;
   deleteVideo(id: string): Promise<void>;
   findVideosByCategoryId(id: string): Promise<Video[]>;
+  findVideosByTitle(title: string): Promise<Video[]>;
 }
 
 export { IVideosRepository };
