@@ -18,8 +18,6 @@ describe('create account controller', () => {
       password: 'random_password',
     });
 
-    console.log(response.body);
-
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('id');
   });
