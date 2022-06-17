@@ -1,14 +1,14 @@
 import { AppError } from '@errors/AppError';
-import { IAccountRepository } from '@modules/accounts/repositories/IAccountRepository';
-import { AccountRepositoryInMemory } from '@modules/accounts/repositories/in-memory/AccountRepositoryInMemory';
+import { IAccountsRepository } from '@modules/accounts/repositories/IAccountsRepository';
+import { AccountsRepositoryInMemory } from '@modules/accounts/repositories/in-memory/AccountsRepositoryInMemory';
 import { CreateAccountUseCase } from './CreateAccountUseCase';
 
-let accountRepositoryInMemory: IAccountRepository;
+let accountRepositoryInMemory: IAccountsRepository;
 let createAccountUseCase: CreateAccountUseCase;
 
 describe('create account use case', () => {
   beforeEach(() => {
-    accountRepositoryInMemory = new AccountRepositoryInMemory();
+    accountRepositoryInMemory = new AccountsRepositoryInMemory();
     createAccountUseCase = new CreateAccountUseCase(accountRepositoryInMemory);
   });
 
