@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
-import { PaginationVideoDTO } from '@modules/videos/dtos/CreateVideoDTO';
+import { PaginationVideoDTO } from '@shared/dtos/CreateVideoDTO';
 
 @injectable()
 class FindAllVideosUseCase {

@@ -1,5 +1,8 @@
 import { Video } from '../infra/typeorm/entities/Video';
-import { CreateVideoDTO, PaginationVideoDTO } from '../dtos/CreateVideoDTO';
+import {
+  CreateVideoDTO,
+  PaginationVideoDTO,
+} from '../../../shared/dtos/CreateVideoDTO';
 
 interface IVideosRepository {
   create({

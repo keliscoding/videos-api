@@ -1,7 +1,7 @@
 import {
   CreateVideoDTO,
   PaginationVideoDTO,
-} from '@modules/videos/dtos/CreateVideoDTO';
+} from '@shared/dtos/CreateVideoDTO';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '../IVideosRepository';
 

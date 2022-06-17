@@ -4,7 +4,7 @@ import { AppError } from '@errors/AppError';
 import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
-import { PaginationVideoDTO } from '@modules/videos/dtos/CreateVideoDTO';
+import { PaginationVideoDTO } from '@shared/dtos/CreateVideoDTO';
 
 @injectable()
 class FindVideosByCategoryUseCase {
