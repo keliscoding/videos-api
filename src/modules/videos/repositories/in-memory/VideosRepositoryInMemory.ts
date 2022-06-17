@@ -1,4 +1,7 @@
-import { CreateVideoDTO } from '@modules/videos/dtos/CreateVideoDTO';
+import {
+  CreateVideoDTO,
+  PaginationVideoDTO,
+} from '@modules/videos/dtos/CreateVideoDTO';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '../IVideosRepository';
 
@@ -26,8 +29,11 @@ class VideosRepositoryInMemory implements IVideosRepository {
     return video;
   }
 
-  async findAll(): Promise<Video[]> {
-    return this.videos;
+  async findAll(offset: number, limit: number): Promise<PaginationVideoDTO> {
+    const videos = this.videos;
+    const count = videos.length;
+
+    return { videos, count };
   }
 
   async findVideoById(id: string): Promise<Video> {
@@ -40,16 +46,29 @@ class VideosRepositoryInMemory implements IVideosRepository {
     this.videos = videos;
   }
 
-  async findVideosByCategoryId(id: string): Promise<Video[]> {
-    const videos = await this.videos.filter(video =>
+  async findVideosByCategoryId(
+    id: string,
+    offset: number,
+    limit: number,
+  ): Promise<PaginationVideoDTO> {
+    const videos = this.videos.filter(video =>
       video.categories.filter(category => category.id === id),
     );
 
-    return videos;
+    const count = videos.length;
+
+    return { videos, count };
   }
 
-  async findVideosByTitle(title: string): Promise<Video[]> {
-    return this.videos.filter(video => video.title.includes(title));
+  async findVideosByTitle(
+    title: string,
+    offset: number,
+    limit: number,
+  ): Promise<PaginationVideoDTO> {
+    const videos = this.videos.filter(video => video.title.includes(title));
+    const count = videos.length;
+
+    return { videos, count };
   }
 }
 

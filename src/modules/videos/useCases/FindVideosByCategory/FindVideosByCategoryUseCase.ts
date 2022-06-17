@@ -4,6 +4,7 @@ import { AppError } from '@errors/AppError';
 import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
+import { PaginationVideoDTO } from '@modules/videos/dtos/CreateVideoDTO';
 
 @injectable()
 class FindVideosByCategoryUseCase {
@@ -14,16 +15,18 @@ class FindVideosByCategoryUseCase {
     private categoryRepository: ICategoriesRepository,
   ) {}
 
-  async execute(id: string): Promise<Video[]> {
+  async execute(
+    id: string,
+    limit: number,
+    offset: number,
+  ): Promise<PaginationVideoDTO> {
     const category = await this.categoryRepository.findById(id);
 
     if (!category) {
       throw new AppError('Category does not exist');
     }
 
-    const videos = await this.videosRepository.findVideosByCategoryId(id);
-
-    return videos;
+    return this.videosRepository.findVideosByCategoryId(id, limit, offset);
   }
 }
 

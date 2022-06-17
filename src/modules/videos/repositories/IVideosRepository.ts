@@ -1,5 +1,5 @@
 import { Video } from '../infra/typeorm/entities/Video';
-import { CreateVideoDTO } from '../dtos/CreateVideoDTO';
+import { CreateVideoDTO, PaginationVideoDTO } from '../dtos/CreateVideoDTO';
 
 interface IVideosRepository {
   create({
@@ -10,11 +10,19 @@ interface IVideosRepository {
     id,
   }: CreateVideoDTO): Promise<Video>;
   findVideoByUrl(url: string): Promise<Video>;
-  findAll(): Promise<Video[]>;
+  findAll(limit: number, offset: number): Promise<PaginationVideoDTO>;
   findVideoById(id: string): Promise<Video>;
   deleteVideo(id: string): Promise<void>;
-  findVideosByCategoryId(id: string): Promise<Video[]>;
-  findVideosByTitle(title: string): Promise<Video[]>;
+  findVideosByCategoryId(
+    id: string,
+    limit: number,
+    offset: number,
+  ): Promise<PaginationVideoDTO>;
+  findVideosByTitle(
+    title: string,
+    limit: number,
+    offset: number,
+  ): Promise<PaginationVideoDTO>;
 }
 
 export { IVideosRepository };

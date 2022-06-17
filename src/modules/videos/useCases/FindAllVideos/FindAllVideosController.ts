@@ -6,17 +6,25 @@ import { FindAllVideosUseCase } from './FindAllVideosUseCase';
 class FindAllVideosController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { search } = request.query;
+    const { limit, start } = request.query;
+
+    const limitNumber = limit ? Number(limit) : 5;
+    const startNumber = start ? Number(start) : 0;
 
     const findAllVideosUseCase = container.resolve(FindAllVideosUseCase);
 
-    if (search) {
-      const data = await findAllVideosUseCase.execute(search as string);
-      return response.json(data);
-    }
+    const { videos, count } = await findAllVideosUseCase.execute(
+      startNumber,
+      limitNumber,
+      search ? (search as string) : '',
+    );
 
-    const data = await findAllVideosUseCase.execute();
-
-    return response.json(data);
+    return response.json({
+      videos,
+      limit: limitNumber,
+      startFrom: startNumber,
+      count,
+    });
   }
 }
 

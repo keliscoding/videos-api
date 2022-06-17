@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
-import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
+import { PaginationVideoDTO } from '@modules/videos/dtos/CreateVideoDTO';
 
 @injectable()
 class FindAllVideosUseCase {
@@ -10,12 +10,16 @@ class FindAllVideosUseCase {
     private videosRepository: IVideosRepository,
   ) {}
 
-  async execute(title?: string): Promise<Video[]> {
+  async execute(
+    offset: number,
+    limit: number,
+    title?: string,
+  ): Promise<PaginationVideoDTO> {
     if (title) {
-      return this.videosRepository.findVideosByTitle(title);
+      return this.videosRepository.findVideosByTitle(title, limit, offset);
     }
 
-    return this.videosRepository.findAll();
+    return this.videosRepository.findAll(limit, offset);
   }
 }
 

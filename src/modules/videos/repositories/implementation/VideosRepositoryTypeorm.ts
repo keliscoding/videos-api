@@ -1,7 +1,10 @@
 import { Repository } from 'typeorm';
 
 import { AppDataSource } from '@src/data-source';
-import { CreateVideoDTO } from '@modules/videos/dtos/CreateVideoDTO';
+import {
+  CreateVideoDTO,
+  PaginationVideoDTO,
+} from '@modules/videos/dtos/CreateVideoDTO';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '../IVideosRepository';
 
@@ -37,9 +40,12 @@ class VideosRepositoryTypeorm implements IVideosRepository {
     return video;
   }
 
-  async findAll(): Promise<Video[]> {
-    const videos = await this.repository.find();
-    return videos;
+  async findAll(limit: number, offset: number): Promise<PaginationVideoDTO> {
+    const [videos, count] = await this.repository.findAndCount({
+      skip: offset,
+      take: limit,
+    });
+    return { videos, count };
   }
 
   async findVideoById(id: string): Promise<Video> {
@@ -54,25 +60,37 @@ class VideosRepositoryTypeorm implements IVideosRepository {
     await this.repository.delete(id);
   }
 
-  async findVideosByCategoryId(id: string): Promise<Video[]> {
-    const videos = await this.repository.find({
+  async findVideosByCategoryId(
+    id: string,
+    limit: number,
+    offset: number,
+  ): Promise<PaginationVideoDTO> {
+    const [videos, count] = await this.repository.findAndCount({
       where: {
         categories: {
           id: id,
         },
       },
       relations: { categories: true },
+      skip: offset,
+      take: limit,
     });
-    return videos;
+    return { videos, count };
   }
 
-  async findVideosByTitle(title: string): Promise<Video[]> {
-    const videos = await this.repository
+  async findVideosByTitle(
+    title: string,
+    limit: number,
+    offset: number,
+  ): Promise<PaginationVideoDTO> {
+    const [videos, count] = await this.repository
       .createQueryBuilder('videos')
       .where('videos.title ilike :title', { title: `%${title}%` })
-      .getMany();
+      .take(limit)
+      .skip(offset)
+      .getManyAndCount();
 
-    return videos;
+    return { videos, count };
   }
 }
 

@@ -1,4 +1,5 @@
 import { Category } from '../../categories/infra/typeorm/entities/Category';
+import { Video } from '../infra/typeorm/entities/Video';
 
 interface CreateVideoDTO {
   id?: string;
@@ -8,4 +9,9 @@ interface CreateVideoDTO {
   categories?: Category[];
 }
 
-export { CreateVideoDTO };
+interface PaginationVideoDTO {
+  videos: Video[];
+  count: number;
+}
+
+export { CreateVideoDTO, PaginationVideoDTO };
