@@ -38,10 +38,13 @@ describe('Find videos by category', () => {
       url: 'http://www.video.com/333',
       categories: [category],
     });
-    const videos = await videosRepositoryInMemory.findVideosByCategoryId(
+    const result = await videosRepositoryInMemory.findVideosByCategoryId(
       category.id,
+      5,
+      0,
     );
 
-    expect(videos).toHaveLength(3);
+    expect(result.videos).toHaveLength(3);
+    expect(result.count).toBe(3);
   });
 });

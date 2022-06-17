@@ -38,7 +38,7 @@ describe('Find All Videos Controller', () => {
     const response = await request(app).get('/api/v1/videos');
 
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveLength(2);
+    expect(response.body.videos).toHaveLength(2);
   });
 
   it('Should be able to list filtered videos', async () => {
@@ -57,6 +57,6 @@ describe('Find All Videos Controller', () => {
     const response = await request(app).get('/api/v1/videos?search=pump');
 
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveLength(1);
+    expect(response.body.videos).toHaveLength(1);
   });
 });

@@ -48,6 +48,6 @@ describe('find videos by category', () => {
       `/api/v1/categories/${category.body.id}/videos`,
     );
 
-    expect(videos.body).toHaveLength(3);
+    expect(videos.body.videos).toHaveLength(3);
   });
 });

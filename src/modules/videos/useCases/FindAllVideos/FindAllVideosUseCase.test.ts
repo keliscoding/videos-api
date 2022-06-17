@@ -24,9 +24,10 @@ describe('Find All Videos', () => {
       url: 'http://www.video.com/222',
     });
 
-    const allVideos = await findAllVideosUseCase.execute();
+    const { videos, count } = await findAllVideosUseCase.execute(0, 5);
 
-    expect(allVideos).toHaveLength(2);
+    expect(videos).toHaveLength(2);
+    expect(count).toBe(2);
   });
 
   it('Should be able to filter videos by its title', async () => {
@@ -42,9 +43,10 @@ describe('Find All Videos', () => {
       url: 'http://www.video.com/grape',
     });
 
-    const filteredVideo = await findAllVideosUseCase.execute('pump');
+    const { videos, count } = await findAllVideosUseCase.execute(0, 5, 'pump');
 
-    expect(filteredVideo).toHaveLength(1);
-    expect(filteredVideo).toMatchObject([{ title: 'pumpkin test video' }]);
+    expect(videos).toHaveLength(1);
+    expect(videos).toMatchObject([{ title: 'pumpkin test video' }]);
+    expect(count).toBe(1);
   });
 });
