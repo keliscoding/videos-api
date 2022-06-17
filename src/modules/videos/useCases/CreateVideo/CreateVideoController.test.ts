@@ -32,4 +32,15 @@ describe('Create Video Controller', () => {
 
     expect(response.status).toBe(201);
   });
+
+  it('should be able to add a default category to a video created without one', async () => {
+    const response = await request(app).post('/api/v1/videos').send({
+      title: 'Video without a category',
+      description: 'Description of a video',
+      url: 'https://urlwithoutacategory.com',
+    });
+
+    expect(response.status).toBe(201);
+    expect(response.body.categories).toMatchObject([{ title: 'free' }]);
+  });
 });
