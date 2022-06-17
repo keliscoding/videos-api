@@ -1,17 +1,17 @@
 import { VideosRepositoryInMemory } from '../../repositories/in-memory/VideosRepositoryInMemory';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { AddCategoriesToVideoUseCase } from './AddCategoriesToVideoUseCase';
 
 let videosRepositoryInMemory: IVideosRepository;
-let categoriesRepositoryInMemory: ICategoryRepository;
+let categoriesRepositoryInMemory: ICategoriesRepository;
 let addCategoriesToVideosUseCase: AddCategoriesToVideoUseCase;
 
 describe('Add Categories To Video', () => {
   beforeEach(() => {
     videosRepositoryInMemory = new VideosRepositoryInMemory();
-    categoriesRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoriesRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     addCategoriesToVideosUseCase = new AddCategoriesToVideoUseCase(
       videosRepositoryInMemory,
       categoriesRepositoryInMemory,

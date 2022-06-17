@@ -1,21 +1,22 @@
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
-import { ICategoryRepository } from '../ICategoryRepository';
+import { ICategoriesRepository } from '../ICategoriesRepository';
 
-class CategoryRepositoryInMemory implements ICategoryRepository {
+class CategoriesRepositoryInMemory implements ICategoriesRepository {
   private categories: Category[];
 
   private constructor() {
     this.categories = [];
   }
 
-  private static INSTANCE: CategoryRepositoryInMemory;
+  private static INSTANCE: CategoriesRepositoryInMemory;
 
-  public static getInstance(): CategoryRepositoryInMemory {
-    if (!CategoryRepositoryInMemory.INSTANCE) {
-      CategoryRepositoryInMemory.INSTANCE = new CategoryRepositoryInMemory();
+  public static getInstance(): CategoriesRepositoryInMemory {
+    if (!CategoriesRepositoryInMemory.INSTANCE) {
+      CategoriesRepositoryInMemory.INSTANCE =
+        new CategoriesRepositoryInMemory();
     }
 
-    return CategoryRepositoryInMemory.INSTANCE;
+    return CategoriesRepositoryInMemory.INSTANCE;
   }
 
   async create(title: string): Promise<Category> {
@@ -60,4 +61,4 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
   }
 }
 
-export { CategoryRepositoryInMemory };
+export { CategoriesRepositoryInMemory };

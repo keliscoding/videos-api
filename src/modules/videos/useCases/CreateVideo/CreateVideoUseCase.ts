@@ -4,7 +4,7 @@ import { AppError } from '@errors/AppError';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 
 interface IRequest {
   title: string;
@@ -19,7 +19,7 @@ class CreateVideoUseCase {
     @inject('VideosRepository')
     private videosRepository: IVideosRepository,
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoryRepository,
+    private categoriesRepository: ICategoriesRepository,
   ) {}
 
   async execute({

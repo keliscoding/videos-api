@@ -1,5 +1,5 @@
 import { AppError } from '@errors/AppError';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { inject, injectable } from 'tsyringe';
 
@@ -14,7 +14,7 @@ class RemoveCategoryFromVideoUseCase {
     @inject('VideosRepository')
     private videosRepository: IVideosRepository,
     @inject('CategoriesRepository')
-    private categoryRepository: ICategoryRepository,
+    private categoryRepository: ICategoriesRepository,
   ) {}
 
   async execute({ category_id, video_id }: IRequest): Promise<void> {

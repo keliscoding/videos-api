@@ -1,14 +1,14 @@
 import { AppError } from '@errors/AppError';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { UpdateCategoryUseCase } from './UpdateCategoryUseCase';
 
-let categoryRepositoryInMemory: ICategoryRepository;
+let categoryRepositoryInMemory: ICategoriesRepository;
 let updateCategoryUseCase: UpdateCategoryUseCase;
 
 describe('Update category', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoryRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     updateCategoryUseCase = new UpdateCategoryUseCase(
       categoryRepositoryInMemory,
     );

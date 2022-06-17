@@ -1,13 +1,13 @@
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { FindAllCategoriesUseCase } from './FindAllCategoriesUseCase';
 
-let categoryRepositoryInMemory: ICategoryRepository;
+let categoryRepositoryInMemory: ICategoriesRepository;
 let findAllCategoriesUseCase: FindAllCategoriesUseCase;
 
 describe('Find All Videos', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoryRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     findAllCategoriesUseCase = new FindAllCategoriesUseCase(
       categoryRepositoryInMemory,
     );

@@ -1,13 +1,13 @@
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { DeleteCategoryUseCase } from './DeleteCategoryUseCase';
 
-let categoryRepositoryInMemory: ICategoryRepository;
+let categoryRepositoryInMemory: ICategoriesRepository;
 let deleteCategoryUseCase: DeleteCategoryUseCase;
 
 describe('Delete Category', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoryRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     deleteCategoryUseCase = new DeleteCategoryUseCase(
       categoryRepositoryInMemory,
     );

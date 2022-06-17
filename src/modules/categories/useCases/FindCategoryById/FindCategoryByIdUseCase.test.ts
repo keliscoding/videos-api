@@ -1,13 +1,13 @@
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { FindCategoryByIdUseCase } from './FindCategoryByIdUseCase';
 
-let categoryRepositoryInMemory: ICategoryRepository;
+let categoryRepositoryInMemory: ICategoriesRepository;
 let findCategoryByIdUseCase: FindCategoryByIdUseCase;
 
 describe('Find Category By Id', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoryRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     findCategoryByIdUseCase = new FindCategoryByIdUseCase(
       categoryRepositoryInMemory,
     );

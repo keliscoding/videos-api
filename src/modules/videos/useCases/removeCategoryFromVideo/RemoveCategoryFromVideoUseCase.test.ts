@@ -1,17 +1,17 @@
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { RemoveCategoryFromVideoUseCase } from './RemoveCategoryFromVideoUseCase';
 
 let videosRepositoryInMemory: IVideosRepository;
-let categoriesRepositoryInMemory: ICategoryRepository;
+let categoriesRepositoryInMemory: ICategoriesRepository;
 let removeCategoriesFromVideosUseCase: RemoveCategoryFromVideoUseCase;
 
 describe('remove category from video', () => {
   beforeEach(() => {
     videosRepositoryInMemory = new VideosRepositoryInMemory();
-    categoriesRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoriesRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     removeCategoriesFromVideosUseCase = new RemoveCategoryFromVideoUseCase(
       videosRepositoryInMemory,
       categoriesRepositoryInMemory,

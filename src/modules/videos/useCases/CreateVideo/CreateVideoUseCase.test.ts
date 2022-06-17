@@ -1,18 +1,18 @@
 import { AppError } from '@errors/AppError';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
-import { CategoryRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoryRepositoryInMemory';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { CreateVideoUseCase } from './CreateVideoUseCase';
 
 let videosRepositoryInMemory: IVideosRepository;
-let categoriesRepositoryInMemory: ICategoryRepository;
+let categoriesRepositoryInMemory: ICategoriesRepository;
 let createVideoUseCase: CreateVideoUseCase;
 
 describe('Create Video', () => {
   beforeEach(async () => {
     videosRepositoryInMemory = new VideosRepositoryInMemory();
-    categoriesRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
+    categoriesRepositoryInMemory = CategoriesRepositoryInMemory.getInstance();
     createVideoUseCase = new CreateVideoUseCase(
       videosRepositoryInMemory,
       categoriesRepositoryInMemory,

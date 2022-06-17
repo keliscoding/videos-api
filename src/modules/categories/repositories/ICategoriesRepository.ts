@@ -1,6 +1,6 @@
 import { Category } from '../infra/typeorm/entities/Category';
 
-interface ICategoryRepository {
+interface ICategoriesRepository {
   create(title: string): Promise<Category>;
   findAll(): Promise<Category[]>;
   findByTitle(title: string): Promise<Category>;
@@ -10,4 +10,4 @@ interface ICategoryRepository {
   findByIds(ids: string[]): Promise<Category[]>;
 }
 
-export { ICategoryRepository };
+export { ICategoriesRepository };

@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@errors/AppError';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 
@@ -16,7 +16,7 @@ class AddCategoriesToVideoUseCase {
     @inject('VideosRepository')
     private videosRepository: IVideosRepository,
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoryRepository,
+    private categoriesRepository: ICategoriesRepository,
   ) {}
 
   async execute({ video_id, categories_id }: IRequest): Promise<Video> {

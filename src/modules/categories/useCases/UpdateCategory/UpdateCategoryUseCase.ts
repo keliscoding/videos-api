@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@errors/AppError';
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 
 interface IRequest {
   id: string;
@@ -13,7 +13,7 @@ interface IRequest {
 class UpdateCategoryUseCase {
   constructor(
     @inject('CategoriesRepository')
-    private categoryRepository: ICategoryRepository,
+    private categoryRepository: ICategoriesRepository,
   ) {}
 
   async execute({ id, title }: IRequest): Promise<Category> {

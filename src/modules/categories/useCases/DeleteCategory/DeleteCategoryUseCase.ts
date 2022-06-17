@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 
-import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 
 @injectable()
 class DeleteCategoryUseCase {
   constructor(
     @inject('CategoriesRepository')
-    private categoryRepository: ICategoryRepository,
+    private categoryRepository: ICategoriesRepository,
   ) {}
 
   async execute(id: string): Promise<void> {
