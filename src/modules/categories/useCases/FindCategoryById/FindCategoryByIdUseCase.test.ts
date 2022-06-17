@@ -7,7 +7,7 @@ let findCategoryByIdUseCase: FindCategoryByIdUseCase;
 
 describe('Find Category By Id', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     findCategoryByIdUseCase = new FindCategoryByIdUseCase(
       categoryRepositoryInMemory,
     );

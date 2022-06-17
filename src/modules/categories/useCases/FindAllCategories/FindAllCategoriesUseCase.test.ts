@@ -7,7 +7,7 @@ let findAllCategoriesUseCase: FindAllCategoriesUseCase;
 
 describe('Find All Videos', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     findAllCategoriesUseCase = new FindAllCategoriesUseCase(
       categoryRepositoryInMemory,
     );

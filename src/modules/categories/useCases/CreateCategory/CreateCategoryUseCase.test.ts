@@ -8,23 +8,21 @@ let createCategoryUseCase: CreateCategoryUseCase;
 
 describe('create category', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     createCategoryUseCase = new CreateCategoryUseCase(
       categoryRepositoryInMemory,
     );
   });
 
   it('should be able to create a category', async () => {
-    const category = await createCategoryUseCase.execute('Test Title');
+    const category = await createCategoryUseCase.execute('Created Category');
 
     expect(category).toHaveProperty('id');
   });
 
   it('should not be able to create a category with a title already taken', async () => {
-    await createCategoryUseCase.execute('Test Title');
-
     expect(async () => {
-      await createCategoryUseCase.execute('Test Title');
+      await createCategoryUseCase.execute('Created Category');
     }).rejects.toBeInstanceOf(AppError);
   });
 

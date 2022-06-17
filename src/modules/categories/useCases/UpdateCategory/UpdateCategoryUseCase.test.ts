@@ -8,7 +8,7 @@ let updateCategoryUseCase: UpdateCategoryUseCase;
 
 describe('Update category', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     updateCategoryUseCase = new UpdateCategoryUseCase(
       categoryRepositoryInMemory,
     );

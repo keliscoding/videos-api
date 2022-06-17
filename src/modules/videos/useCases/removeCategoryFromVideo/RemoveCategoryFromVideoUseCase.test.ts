@@ -11,7 +11,7 @@ let removeCategoriesFromVideosUseCase: RemoveCategoryFromVideoUseCase;
 describe('remove category from video', () => {
   beforeEach(() => {
     videosRepositoryInMemory = new VideosRepositoryInMemory();
-    categoriesRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoriesRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     removeCategoriesFromVideosUseCase = new RemoveCategoryFromVideoUseCase(
       videosRepositoryInMemory,
       categoriesRepositoryInMemory,
@@ -19,9 +19,11 @@ describe('remove category from video', () => {
   });
 
   it('should be able to remove a category from a video', async () => {
-    const category = await categoriesRepositoryInMemory.create('category_test');
+    const category = await categoriesRepositoryInMemory.create(
+      'category_that_will_remain',
+    );
     const category2 = await categoriesRepositoryInMemory.create(
-      'category_test2',
+      'category_about_to_be_dumped',
     );
     const video = await videosRepositoryInMemory.create({
       title: 'video test1',
@@ -32,7 +34,7 @@ describe('remove category from video', () => {
     video.categories = [category, category2];
 
     await removeCategoriesFromVideosUseCase.execute({
-      category_id: category.id,
+      category_id: category2.id,
       video_id: video.id,
     });
 

@@ -7,7 +7,7 @@ let deleteCategoryUseCase: DeleteCategoryUseCase;
 
 describe('Delete Category', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     deleteCategoryUseCase = new DeleteCategoryUseCase(
       categoryRepositoryInMemory,
     );

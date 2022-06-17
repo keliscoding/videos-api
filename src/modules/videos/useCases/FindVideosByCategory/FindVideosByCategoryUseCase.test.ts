@@ -9,7 +9,7 @@ let findVideosByCategoryUseCase: FindVideosByCategoryUseCase;
 
 describe('Find videos by category', () => {
   beforeEach(() => {
-    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoryRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     videosRepositoryInMemory = new VideosRepositoryInMemory();
     findVideosByCategoryUseCase = new FindVideosByCategoryUseCase(
       videosRepositoryInMemory,
@@ -18,7 +18,7 @@ describe('Find videos by category', () => {
   });
   it('should be able to list all videos that belong to a category', async () => {
     const category = await categoryRepositoryInMemory.create(
-      'category to be tested',
+      'category for list all videos use case',
     );
     await videosRepositoryInMemory.create({
       title: 'video test1',

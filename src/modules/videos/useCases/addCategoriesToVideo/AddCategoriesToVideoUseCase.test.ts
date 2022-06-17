@@ -11,7 +11,7 @@ let addCategoriesToVideosUseCase: AddCategoriesToVideoUseCase;
 describe('Add Categories To Video', () => {
   beforeEach(() => {
     videosRepositoryInMemory = new VideosRepositoryInMemory();
-    categoriesRepositoryInMemory = new CategoryRepositoryInMemory();
+    categoriesRepositoryInMemory = CategoryRepositoryInMemory.getInstance();
     addCategoriesToVideosUseCase = new AddCategoriesToVideoUseCase(
       videosRepositoryInMemory,
       categoriesRepositoryInMemory,
@@ -25,10 +25,12 @@ describe('Add Categories To Video', () => {
       url: 'http://www.video.com/111',
     });
 
-    const category = await categoriesRepositoryInMemory.create('category_test');
+    const category = await categoriesRepositoryInMemory.create(
+      'add_category_to_video',
+    );
 
     const category2 = await categoriesRepositoryInMemory.create(
-      'category_test2',
+      'add_category_to_video_2',
     );
 
     await addCategoriesToVideosUseCase.execute({
@@ -46,7 +48,9 @@ describe('Add Categories To Video', () => {
       url: 'http://www.video.com/111',
     });
 
-    const category = await categoriesRepositoryInMemory.create('category_test');
+    const category = await categoriesRepositoryInMemory.create(
+      'add_category_to_video_3',
+    );
 
     await addCategoriesToVideosUseCase.execute({
       video_id: video.id,
@@ -54,7 +58,7 @@ describe('Add Categories To Video', () => {
     });
 
     const category2 = await categoriesRepositoryInMemory.create(
-      'category_test2',
+      'add_category_to_video_4',
     );
 
     await addCategoriesToVideosUseCase.execute({
