@@ -13,9 +13,12 @@ class CreateAccountUseCase {
     password,
     email,
   }: CreateAccountDTO): Promise<Account> {
-    if (!username) throw new AppError('missing username field');
+    const lowercaseUsername = username.toLowerCase();
+    const lowercaseEmail = email.toLowerCase();
+
+    if (!lowercaseUsername) throw new AppError('missing username field');
     if (!password) throw new AppError('missing password field');
-    if (!email) throw new AppError('missing email field');
+    if (!lowercaseEmail) throw new AppError('missing email field');
 
     const usernameExists = await this.accountRepository.findAccountByUsername(
       username,
@@ -28,9 +31,9 @@ class CreateAccountUseCase {
     const encryptedPassword = await bcryptjs.hash(password, 10);
 
     const account = await this.accountRepository.create({
-      username,
+      username: lowercaseUsername,
       password: encryptedPassword,
-      email,
+      email: lowercaseEmail,
     });
 
     return account;
