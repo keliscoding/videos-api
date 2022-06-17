@@ -1,8 +1,8 @@
 import { Account } from '@modules/accounts/infra/typeorm/entities/Account';
 import { CreateAccountDTO } from '@shared/dtos/CreateAccountDTO';
-import { IAccountRepository } from '../IAccountRepository';
+import { IAccountsRepository } from '../IAccountsRepository';
 
-class AccountRepositoryInMemory implements IAccountRepository {
+class AccountsRepositoryInMemory implements IAccountsRepository {
   private accounts: Account[];
 
   constructor() {
@@ -32,4 +32,4 @@ class AccountRepositoryInMemory implements IAccountRepository {
   }
 }
 
-export { AccountRepositoryInMemory };
+export { AccountsRepositoryInMemory };

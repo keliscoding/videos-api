@@ -1,12 +1,17 @@
 import bcryptjs from 'bcryptjs';
+import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@errors/AppError';
 import { Account } from '@modules/accounts/infra/typeorm/entities/Account';
-import { IAccountRepository } from '@modules/accounts/repositories/IAccountRepository';
+import { IAccountsRepository } from '@modules/accounts/repositories/IAccountsRepository';
 import { CreateAccountDTO } from '@shared/dtos/CreateAccountDTO';
 
+@injectable()
 class CreateAccountUseCase {
-  constructor(private accountRepository: IAccountRepository) {}
+  constructor(
+    @inject('AccountsRepository')
+    private accountRepository: IAccountsRepository,
+  ) {}
 
   async execute({
     username,
