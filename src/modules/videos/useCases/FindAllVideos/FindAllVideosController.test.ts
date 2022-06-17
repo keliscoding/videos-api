@@ -40,4 +40,23 @@ describe('Find All Videos Controller', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveLength(2);
   });
+
+  it('Should be able to list filtered videos', async () => {
+    await request(app).post('/api/v1/videos').send({
+      title: 'pumpkin cooking video',
+      description: 'description_test',
+      url: 'http://pumpkin.com',
+    });
+
+    await request(app).post('/api/v1/videos').send({
+      title: 'grape eating video',
+      description: 'description_test',
+      url: 'http://grape.com',
+    });
+
+    const response = await request(app).get('/api/v1/videos?search=pump');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveLength(1);
+  });
 });
