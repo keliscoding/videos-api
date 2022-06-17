@@ -65,6 +65,15 @@ class VideosRepositoryTypeorm implements IVideosRepository {
     });
     return videos;
   }
+
+  async findVideosByTitle(title: string): Promise<Video[]> {
+    const videos = await this.repository
+      .createQueryBuilder('videos')
+      .where('videos.title ilike :title', { title: `%${title}%` })
+      .getMany();
+
+    return videos;
+  }
 }
 
 export { VideosRepositoryTypeorm };
