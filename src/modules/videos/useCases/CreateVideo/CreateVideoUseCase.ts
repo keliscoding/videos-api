@@ -4,6 +4,7 @@ import { AppError } from '@errors/AppError';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
+import { ICategoryRepository } from '@modules/categories/repositories/ICategoryRepository';
 
 interface IRequest {
   title: string;
@@ -17,6 +18,8 @@ class CreateVideoUseCase {
   constructor(
     @inject('VideosRepository')
     private videosRepository: IVideosRepository,
+    @inject('CategoriesRepository')
+    private categoriesRepository: ICategoryRepository,
   ) {}
 
   async execute({
@@ -28,6 +31,14 @@ class CreateVideoUseCase {
     if (!title) throw new AppError('missing title field');
     if (!description) throw new AppError('missing description field');
     if (!url) throw new AppError('missing url field');
+
+    if (!categories) {
+      const category = await this.categoriesRepository.findByTitle('free');
+      if (!category) {
+        throw new AppError('Default category cannot be found');
+      }
+      categories = [category];
+    }
 
     const checksIfUrlIsUnique = await this.videosRepository.findVideoByUrl(url);
 
