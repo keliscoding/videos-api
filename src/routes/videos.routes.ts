@@ -5,8 +5,8 @@ import { FindAllVideosController } from '@modules/videos/useCases/FindAllVideos/
 import { FindVideoByIdController } from '@modules/videos/useCases/FindVideoById/FindVideoByIdController';
 import { UpdateVideoController } from '@modules/videos/useCases/UpdateVideo/UpdateVideoController';
 import { DeleteVideoController } from '@modules/videos/useCases/DeleteVideo/DeleteVideoController';
-import { AddCategoriesToVideoController } from '@modules/videos/useCases/addCategoriesToVideo/AddCategoriesToVideoController';
-import { RemoveCategoryFromVideoController } from '@modules/videos/useCases/removeCategoryFromVideo/RemoveCategoryFromVideoController';
+import { AddCategoriesToVideoController } from '@modules/videos/useCases/AddCategoriesToVideo/AddCategoriesToVideoController';
+import { RemoveCategoryFromVideoController } from '@modules/videos/useCases/RemoveCategoryFromVideo/RemoveCategoryFromVideoController';
 
 const videosRouter = Router();
 
