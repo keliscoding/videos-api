@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { v4 as uuid } from 'uuid';
 
 import { app } from '@src/app';
 import { AppDataSource } from '@src/data-source';
@@ -6,6 +7,14 @@ import { AppDataSource } from '@src/data-source';
 describe('Update Video Controller', () => {
   beforeAll(async () => {
     await AppDataSource.initialize();
+    const id = uuid();
+
+    await AppDataSource.manager.query(
+      `
+        INSERT INTO categories(id, title, created_at)
+        values('${id}', 'free', 'now()') 
+    `,
+    );
   });
 
   afterAll(async () => {

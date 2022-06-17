@@ -1,11 +1,21 @@
-import { app } from '@src/app';
 import request from 'supertest';
+import { v4 as uuid } from 'uuid';
 
-import { AppDataSource } from '../../../../data-source';
+import { app } from '@src/app';
+import { AppDataSource } from '@src/data-source';
 
 describe('FindVideoById controller', () => {
   beforeAll(async () => {
     await AppDataSource.initialize();
+
+    const id = uuid();
+
+    await AppDataSource.manager.query(
+      `
+        INSERT INTO categories(id, title, created_at)
+        values('${id}', 'free', 'now()') 
+    `,
+    );
   });
 
   afterAll(async () => {

@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { v4 as uuid } from 'uuid';
 
 import { AppDataSource } from '@src/data-source';
 import { app } from '@src/app';
@@ -6,6 +7,14 @@ import { app } from '@src/app';
 describe('Add categories to video controller', () => {
   beforeAll(async () => {
     await AppDataSource.initialize();
+    const id = uuid();
+
+    await AppDataSource.manager.query(
+      `
+        INSERT INTO categories(id, title, created_at)
+        values('${id}', 'free', 'now()') 
+    `,
+    );
   });
   afterAll(async () => {
     await AppDataSource.destroy();
@@ -30,6 +39,6 @@ describe('Add categories to video controller', () => {
 
     expect(response.status).toBe(200);
 
-    expect(response.body.categories).toHaveLength(1);
+    expect(response.body.categories).toHaveLength(2);
   });
 });
