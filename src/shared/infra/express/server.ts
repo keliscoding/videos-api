@@ -1,5 +1,5 @@
 import { app } from './app';
-import './infra/typeorm/index';
+import '../typeorm/index';
 
 const port = 3000;
 

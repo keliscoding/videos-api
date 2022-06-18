@@ -6,7 +6,7 @@ import { FindCategoryByIdController } from '@modules/categories/useCases/FindCat
 import { UpdateCategoryController } from '@modules/categories/useCases/UpdateCategory/UpdateCategoryController';
 import { DeleteCategoryController } from '@modules/categories/useCases/DeleteCategory/DeleteCategoryController';
 import { FindVideosByCategoryController } from '@modules/videos/useCases/FindVideosByCategory/FindVideosByCategoryController';
-import { checkAuthentication } from '@src/middleware/checkAuthentication';
+import { checkAuthentication } from '@shared/infra/express/middleware/checkAuthentication';
 
 const categoriesRouter = Router();
 

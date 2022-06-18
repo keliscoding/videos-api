@@ -1,6 +1,6 @@
 import request from 'supertest';
-import { app } from '@src/app';
-import { AppDataSource } from '@src/data-source';
+import { app } from '@shared/infra/express/app';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
 describe('authenticate account controller', () => {
   beforeAll(async () => {

@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 
-import { AppDataSource } from '@src/data-source';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 import {
   CreateVideoDTO,
   PaginationVideoDTO,

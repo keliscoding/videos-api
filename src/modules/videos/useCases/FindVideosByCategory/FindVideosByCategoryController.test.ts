@@ -1,7 +1,7 @@
-import { app } from '@src/app';
+import { app } from '@shared/infra/express/app';
 import request from 'supertest';
 
-import { AppDataSource } from '@src/data-source';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
 describe('find videos by category', () => {
   beforeAll(async () => {

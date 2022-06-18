@@ -1,4 +1,4 @@
-import { AppDataSource } from '@src/data-source';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 import { v4 as uuid } from 'uuid';
 
 async function createFreeCategory() {

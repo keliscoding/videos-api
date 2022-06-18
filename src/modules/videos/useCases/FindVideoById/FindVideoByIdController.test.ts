@@ -1,8 +1,8 @@
 import request from 'supertest';
 import { v4 as uuid } from 'uuid';
 
-import { app } from '@src/app';
-import { AppDataSource } from '@src/data-source';
+import { app } from '@shared/infra/express/app';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
 describe('FindVideoById controller', () => {
   beforeAll(async () => {
