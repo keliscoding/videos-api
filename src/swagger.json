@@ -1,0 +1,526 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "videoflix",
+    "description": "this is a video playlist api",
+    "version": "1.0.0",
+    "contact": {
+      "name": "videoflix suport",
+      "email": "kellyplcastelo@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/videos": {
+      "post": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "create a video",
+        "description": "create a new video",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/Definitions/schemas/VideoPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created video",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/Definitions/schemas/Video"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "get all videos that matches search criteria",
+        "description": "display a list of videos",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "search a video by its name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "display all videos that matches search criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/Definitions/schemas/Video"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/videos/{:id}": {
+      "post": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "get video by id",
+        "description": "get video by id",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "video id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/Definitions/schemas/VideoPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "display video object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/Definitions/schemas/Video"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "video not found",
+            "schema": {
+              "$ref": "#/Definitions/schemas/Error"
+            },
+            "examples": {
+              "properties": {
+                "error": "video not found"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "update selected video",
+        "description": "update selected video",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "video id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/Definitions/schemas/VideoPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "display updated video object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/Definitions/schemas/Video"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "video not found",
+            "schema": {
+              "$ref": "#/Definitions/schemas/Error"
+            },
+            "examples": {
+              "properties": {
+                "error": "video not found"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "delete selected video",
+        "description": "delete selected video",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "video id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "404": {
+            "description": "video not found",
+            "schema": {
+              "$ref": "#/Definitions/schemas/Error"
+            },
+            "examples": {
+              "properties": {
+                "error": "video not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/videos/{:id}/categories": {
+      "post": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "add categories to selected video",
+        "description": "add categories to selected video",
+        "parameters": [
+          {
+            "name": ":id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "video id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/Definitions/schemas/AddCategory"
+                },
+                "example": {
+                  "id": "this_is_supposed_to_be_a_category_id"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "display video object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/Definitions/schemas/Video"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "video not found",
+            "schema": {
+              "$ref": "#/Definitions/schemas/Error"
+            },
+            "examples": {
+              "properties": {
+                "error": "video not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{:video_id}/categories/{:category_id}": {
+      "delete": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "delete a selected category from selected video",
+        "description": "delete a selected category from selected video",
+        "parameters": [
+          {
+            "name": ":video_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "video id"
+          },
+          {
+            "name": ":category_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "category id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "404": {
+            "description": "video not found",
+            "schema": {
+              "$ref": "#/Definitions/schemas/Error"
+            },
+            "examples": {
+              "properties": {
+                "error": "video not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "create a category",
+        "description": "create a new category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/Definitions/schemas/CategoryPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/Definitions/schemas/Category"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "category already exists",
+            "schema": {
+              "$ref": "#/Definitions/schemas/Error"
+            },
+            "examples": {
+              "properties": {
+                "error": "category already exists"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "get all categories",
+        "description": "display a list of categories",
+        "responses": {
+          "200": {
+            "description": "display all available categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/Definitions/schemas/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Definitions": {
+    "schemas": {
+      "Video": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/Definitions/schemas/Category"
+            }
+          }
+        }
+      },
+      "VideoPost": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/Definitions/schemas/Category"
+            }
+          }
+        }
+      },
+      "VideoPatch": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/Definitions/schemas/Category"
+            }
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CategoryPost": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "AddCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "Components": {
+    "SecuritySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
