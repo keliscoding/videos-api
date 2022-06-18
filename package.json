@@ -6,10 +6,10 @@
   "author": "Kelly Castelo <kellyplcastelo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --poll --inspect --transpile-only --respawn ./src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --poll --inspect --transpile-only --respawn ./src/shared/infra/express/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
-    "seed:defaultCategory": "ts-node-dev -r tsconfig-paths/register src/infra/typeorm/seed/defaultCategory.ts"
+    "seed:defaultCategory": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/defaultCategory.ts"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",

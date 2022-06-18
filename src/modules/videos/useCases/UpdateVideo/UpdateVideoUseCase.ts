@@ -28,7 +28,7 @@ class UpdateVideoUseCase {
     const video = await this.videosRepository.findVideoById(id);
 
     if (!video) {
-      throw new AppError('Video cannot be found');
+      throw new AppError('video not found');
     }
 
     video.title = title ? title : video.title;

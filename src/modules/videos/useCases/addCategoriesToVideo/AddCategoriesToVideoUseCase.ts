@@ -23,7 +23,7 @@ class AddCategoriesToVideoUseCase {
     const video = await this.videosRepository.findVideoById(video_id);
 
     if (!video) {
-      throw new AppError('Video does not exists');
+      throw new AppError('video not found', 404);
     }
 
     let categories = await this.categoriesRepository.findByIds(categories_id);

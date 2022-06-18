@@ -23,7 +23,7 @@ class CreateCategoryUseCase {
     );
 
     if (categoryAlreadyExist) {
-      throw new AppError(`Category ${formatedTitle} already exists`);
+      throw new AppError(`category ${formatedTitle} already exists`);
     }
 
     const category = await this.categoryRepository.create(formatedTitle);

@@ -21,17 +21,17 @@ class RemoveCategoryFromVideoUseCase {
     const video = await this.videosRepository.findVideoById(video_id);
 
     if (!video) {
-      throw new AppError('Video does not exists');
+      throw new AppError('video does not exists', 404);
     }
 
     if (!video.categories) {
-      throw new AppError('Video does not have any categories');
+      throw new AppError('video does not have any categories', 404);
     }
 
     const category = await this.categoryRepository.findById(category_id);
 
     if (!category) {
-      throw new AppError('Category does not exists');
+      throw new AppError('category does not exists', 404);
     }
 
     video.categories = video.categories.filter(c => c.id !== category_id);

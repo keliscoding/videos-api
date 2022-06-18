@@ -36,11 +36,12 @@ videosRouter
     '/:id/categories',
     checkAuthentication,
     addCategoriesToVideoController.handle,
-  )
-  .delete(
-    '/:video_id/categories/:category_id',
-    checkAuthentication,
-    removeCategoryFromVideoController.handle,
   );
+
+videosRouter.delete(
+  '/:video_id/categories/:category_id',
+  checkAuthentication,
+  removeCategoryFromVideoController.handle,
+);
 
 export { videosRouter };

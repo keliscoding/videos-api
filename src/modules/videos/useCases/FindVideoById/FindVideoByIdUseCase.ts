@@ -15,7 +15,7 @@ class FindVideoByIdUseCase {
     const video = await this.videosRepository.findVideoById(id);
 
     if (!video) {
-      throw new AppError('Video cannot be found');
+      throw new AppError('video not found', 404);
     }
 
     return video;

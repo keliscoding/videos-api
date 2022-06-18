@@ -23,7 +23,7 @@ class FindVideosByCategoryUseCase {
     const category = await this.categoryRepository.findById(id);
 
     if (!category) {
-      throw new AppError('Category does not exist');
+      throw new AppError('category not found', 404);
     }
 
     return this.videosRepository.findVideosByCategoryId(id, limit, offset);

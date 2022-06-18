@@ -38,7 +38,7 @@ class CreateVideoUseCase {
     if (!categories) {
       const category = await this.categoriesRepository.findByTitle('free');
       if (!category) {
-        throw new AppError('Default category cannot be found');
+        throw new AppError('default category cannot be found');
       }
       categories = [category];
     }
