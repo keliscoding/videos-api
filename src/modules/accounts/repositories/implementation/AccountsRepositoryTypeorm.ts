@@ -1,6 +1,6 @@
 import { Account } from '@modules/accounts/infra/typeorm/entities/Account';
 import { CreateAccountDTO } from '@shared/dtos/CreateAccountDTO';
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import { AppDataSource } from '@src/data-source';
 import { Repository } from 'typeorm';
 import { IAccountsRepository } from '../IAccountsRepository';
 

@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import { AppDataSource } from '@src/data-source';
 import { app } from '@shared/infra/express/app';
 
 describe('create account controller', () => {

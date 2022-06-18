@@ -2,7 +2,7 @@ import request from 'supertest';
 import { v4 as uuid } from 'uuid';
 
 import { app } from '@shared/infra/express/app';
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import { AppDataSource } from '@src/data-source';
 
 describe('Show Free Videos Controller', () => {
   beforeAll(async () => {
@@ -88,8 +88,6 @@ describe('Show Free Videos Controller', () => {
       });
 
     const response = await request(app).get('/api/v1/videos/free');
-
-    console.log(response.body);
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveLength(5);

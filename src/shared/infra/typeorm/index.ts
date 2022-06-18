@@ -1,4 +1,4 @@
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import { AppDataSource } from '@src/data-source';
 
 AppDataSource.initialize()
   .then(() => {

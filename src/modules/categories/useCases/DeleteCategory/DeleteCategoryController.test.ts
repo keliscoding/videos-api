@@ -1,7 +1,7 @@
 import request from 'supertest';
 
 import { app } from '@shared/infra/express/app';
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import { AppDataSource } from '@src/data-source';
 
 describe('delete category controller', () => {
   beforeAll(async () => {

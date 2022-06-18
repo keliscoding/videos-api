@@ -2,7 +2,7 @@ import request from 'supertest';
 import { v4 as uuid } from 'uuid';
 
 import { app } from '@shared/infra/express/app';
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import { AppDataSource } from '@src/data-source';
 
 describe('Update Video Controller', () => {
   beforeAll(async () => {
