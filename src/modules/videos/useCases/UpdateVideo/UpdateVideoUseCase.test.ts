@@ -1,4 +1,4 @@
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { VideosRepositoryInMemory } from '@modules/videos/repositories/in-memory/VideosRepositoryInMemory';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { UpdateVideoUseCase } from './UpdateVideoUseCase';

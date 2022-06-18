@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';

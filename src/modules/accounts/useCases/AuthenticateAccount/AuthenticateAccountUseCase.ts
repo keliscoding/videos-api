@@ -2,7 +2,7 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { IAccountsRepository } from '@modules/accounts/repositories/IAccountsRepository';
 
 interface IRequest {

@@ -1,7 +1,7 @@
 import bcryptjs from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { Account } from '@modules/accounts/infra/typeorm/entities/Account';
 import { IAccountsRepository } from '@modules/accounts/repositories/IAccountsRepository';
 import { CreateAccountDTO } from '@shared/dtos/CreateAccountDTO';

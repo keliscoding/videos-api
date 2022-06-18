@@ -1,4 +1,4 @@
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { UpdateCategoryUseCase } from './UpdateCategoryUseCase';

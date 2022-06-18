@@ -1,4 +1,4 @@
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { inject, injectable } from 'tsyringe';

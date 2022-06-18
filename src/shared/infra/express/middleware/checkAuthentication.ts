@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 export function checkAuthentication(
   req: Request,

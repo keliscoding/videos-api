@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { v4 as uuid } from 'uuid';
 
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
 import { IVideosRepository } from '@modules/videos/repositories/IVideosRepository';
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
