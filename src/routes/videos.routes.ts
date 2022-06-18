@@ -8,6 +8,7 @@ import { DeleteVideoController } from '@modules/videos/useCases/DeleteVideo/Dele
 import { AddCategoriesToVideoController } from '@modules/videos/useCases/AddCategoriesToVideo/AddCategoriesToVideoController';
 import { RemoveCategoryFromVideoController } from '@modules/videos/useCases/RemoveCategoryFromVideo/RemoveCategoryFromVideoController';
 import { checkAuthentication } from '../middleware/checkAuthentication';
+import { ShowFreeVideosController } from '@modules/videos/useCases/ShowFreeVideos/ShowFreeVideosController';
 
 const videosRouter = Router();
 
@@ -19,6 +20,9 @@ const deleteVideoController = new DeleteVideoController();
 const addCategoriesToVideoController = new AddCategoriesToVideoController();
 const removeCategoryFromVideoController =
   new RemoveCategoryFromVideoController();
+const showFreeVideosController = new ShowFreeVideosController();
+
+videosRouter.get('/free', showFreeVideosController.handle);
 
 videosRouter
   .post('/', checkAuthentication, createVideoController.handle)
