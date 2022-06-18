@@ -7,7 +7,12 @@ import { app } from '@src/app';
 describe('Create Video Controller', () => {
   beforeAll(async () => {
     await AppDataSource.initialize();
-    // await AppDataSource.runMigrations();
+
+    await request(app).post('/api/v1/register').send({
+      username: 'username',
+      email: 'email@example.com',
+      password: 'password',
+    });
 
     const id = uuid();
 
@@ -24,21 +29,35 @@ describe('Create Video Controller', () => {
   });
 
   it('Should be able to create a new video', async () => {
-    const response = await request(app).post('/api/v1/videos').send({
-      title: 'Video Test Title',
-      description: 'Description of a video',
-      url: 'https://url.com',
-    });
+    const account = await request(app)
+      .post('/api/v1/login')
+      .send({ username: 'username', password: 'password' });
+
+    const response = await request(app)
+      .post('/api/v1/videos')
+      .set('Authorization', 'bearer ' + account.body.token)
+      .send({
+        title: 'Video Test Title',
+        description: 'Description of a video',
+        url: 'https://url.com',
+      });
 
     expect(response.status).toBe(201);
   });
 
   it('should be able to add a default category to a video created without one', async () => {
-    const response = await request(app).post('/api/v1/videos').send({
-      title: 'Video without a category',
-      description: 'Description of a video',
-      url: 'https://urlwithoutacategory.com',
-    });
+    const account = await request(app)
+      .post('/api/v1/login')
+      .send({ username: 'username', password: 'password' });
+
+    const response = await request(app)
+      .post('/api/v1/videos')
+      .set('Authorization', 'bearer ' + account.body.token)
+      .send({
+        title: 'Video without a category',
+        description: 'Description of a video',
+        url: 'https://urlwithoutacategory.com',
+      });
 
     expect(response.status).toBe(201);
     expect(response.body.categories).toMatchObject([{ title: 'free' }]);

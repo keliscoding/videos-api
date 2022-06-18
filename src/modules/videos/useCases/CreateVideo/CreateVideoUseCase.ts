@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import { v4 as uuid } from 'uuid';
 
 import { AppError } from '@errors/AppError';
 import { Video } from '@modules/videos/infra/typeorm/entities/Video';
@@ -11,6 +12,7 @@ interface IRequest {
   description: string;
   url: string;
   categories?: Category[];
+  id?: string;
 }
 
 @injectable()
@@ -27,6 +29,7 @@ class CreateVideoUseCase {
     description,
     url,
     categories,
+    id,
   }: IRequest): Promise<Video> {
     if (!title) throw new AppError('missing title field');
     if (!description) throw new AppError('missing description field');
@@ -40,6 +43,8 @@ class CreateVideoUseCase {
       categories = [category];
     }
 
+    if (!id) id = uuid();
+
     const checksIfUrlIsUnique = await this.videosRepository.findVideoByUrl(url);
 
     if (checksIfUrlIsUnique) {
@@ -51,6 +56,7 @@ class CreateVideoUseCase {
       description,
       url,
       categories,
+      id,
     });
 
     return video;

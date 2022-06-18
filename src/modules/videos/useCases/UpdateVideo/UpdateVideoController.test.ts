@@ -7,6 +7,11 @@ import { AppDataSource } from '@src/data-source';
 describe('Update Video Controller', () => {
   beforeAll(async () => {
     await AppDataSource.initialize();
+    await request(app).post('/api/v1/register').send({
+      username: 'username',
+      email: 'email@example.com',
+      password: 'password',
+    });
     const id = uuid();
 
     await AppDataSource.manager.query(
@@ -22,14 +27,22 @@ describe('Update Video Controller', () => {
   });
 
   it('should be able to update a video', async () => {
-    const video = await request(app).post('/api/v1/videos').send({
-      title: 'test_update',
-      description: 'description_test',
-      url: 'http://updateUrltest.com',
-    });
+    const account = await request(app)
+      .post('/api/v1/login')
+      .send({ username: 'username', password: 'password' });
+
+    const video = await request(app)
+      .post('/api/v1/videos')
+      .set('Authorization', 'bearer ' + account.body.token)
+      .send({
+        title: 'test_update',
+        description: 'description_test',
+        url: 'http://updateUrltest.com',
+      });
 
     const updatedVideo = await request(app)
       .patch(`/api/v1/videos/${video.body.id}`)
+      .set('Authorization', 'bearer ' + account.body.token)
       .send({
         title: 'updated_title',
         description: 'new_description',
