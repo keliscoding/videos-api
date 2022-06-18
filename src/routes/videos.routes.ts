@@ -7,6 +7,7 @@ import { UpdateVideoController } from '@modules/videos/useCases/UpdateVideo/Upda
 import { DeleteVideoController } from '@modules/videos/useCases/DeleteVideo/DeleteVideoController';
 import { AddCategoriesToVideoController } from '@modules/videos/useCases/AddCategoriesToVideo/AddCategoriesToVideoController';
 import { RemoveCategoryFromVideoController } from '@modules/videos/useCases/RemoveCategoryFromVideo/RemoveCategoryFromVideoController';
+import { checkAuthentication } from '../middleware/checkAuthentication';
 
 const videosRouter = Router();
 
@@ -20,16 +21,21 @@ const removeCategoryFromVideoController =
   new RemoveCategoryFromVideoController();
 
 videosRouter
-  .post('/', createVideoController.handle)
-  .get('/', findAllVideosController.handle);
+  .post('/', checkAuthentication, createVideoController.handle)
+  .get('/', checkAuthentication, findAllVideosController.handle);
 
 videosRouter
-  .get('/:id', findVideoByIdController.handle)
-  .patch('/:id', updateVideoController.handle)
-  .delete('/:id', deleteVideoController.handle)
-  .post('/:id/categories', addCategoriesToVideoController.handle)
+  .get('/:id', checkAuthentication, findVideoByIdController.handle)
+  .patch('/:id', checkAuthentication, updateVideoController.handle)
+  .delete('/:id', checkAuthentication, deleteVideoController.handle)
+  .post(
+    '/:id/categories',
+    checkAuthentication,
+    addCategoriesToVideoController.handle,
+  )
   .delete(
     '/:video_id/categories/:category_id',
+    checkAuthentication,
     removeCategoryFromVideoController.handle,
   );
 

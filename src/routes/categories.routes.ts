@@ -6,6 +6,7 @@ import { FindCategoryByIdController } from '@modules/categories/useCases/FindCat
 import { UpdateCategoryController } from '@modules/categories/useCases/UpdateCategory/UpdateCategoryController';
 import { DeleteCategoryController } from '@modules/categories/useCases/DeleteCategory/DeleteCategoryController';
 import { FindVideosByCategoryController } from '@modules/videos/useCases/FindVideosByCategory/FindVideosByCategoryController';
+import { checkAuthentication } from '@src/middleware/checkAuthentication';
 
 const categoriesRouter = Router();
 
@@ -18,13 +19,17 @@ const deleteCategoryController = new DeleteCategoryController();
 const findVideosByCategoryController = new FindVideosByCategoryController();
 
 categoriesRouter
-  .post('/', createCategoryController.handle)
-  .get('/', findAllCategoriesController.handle);
+  .post('/', checkAuthentication, createCategoryController.handle)
+  .get('/', checkAuthentication, findAllCategoriesController.handle);
 
 categoriesRouter
-  .get('/:id', findCategoryByIdController.handle)
-  .patch('/:id', updateCategoryController.handle)
-  .delete('/:id', deleteCategoryController.handle)
-  .get('/:id/videos', findVideosByCategoryController.handle);
+  .get('/:id', checkAuthentication, findCategoryByIdController.handle)
+  .patch('/:id', checkAuthentication, updateCategoryController.handle)
+  .delete('/:id', checkAuthentication, deleteCategoryController.handle)
+  .get(
+    '/:id/videos',
+    checkAuthentication,
+    findVideosByCategoryController.handle,
+  );
 
 export { categoriesRouter };
